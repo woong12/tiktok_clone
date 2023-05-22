@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
+import 'package:tiktok_clone/features/authentication/username_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -20,7 +20,7 @@ class SignUpScreen extends StatelessWidget {
   void _onEmailTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const EmailScreen(),
+        builder: (context) => const UsernameScreen(),
       ),
     );
   }
@@ -39,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
               const Text(
                 "Sign up for TikTok",
                 style: TextStyle(
-                  fontSize: Sizes.size24,
+                  fontSize: Sizes.size24 + Sizes.size2,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -78,7 +78,12 @@ class SignUpScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Already have an account?"),
+              const Text(
+                "Already have an account?",
+                style: TextStyle(
+                  fontSize: Sizes.size16 + Sizes.size1,
+                ),
+              ),
               Gaps.h5,
               GestureDetector(
                 onTap: () => _onLoginTap(context),
@@ -86,6 +91,7 @@ class SignUpScreen extends StatelessWidget {
                   "Log in",
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
+                    fontSize: Sizes.size16 + Sizes.size1,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

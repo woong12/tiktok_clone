@@ -64,7 +64,12 @@ class LoginScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Don't have an account?"),
+              const Text(
+                "Don't have an account?",
+                style: TextStyle(
+                  fontSize: Sizes.size16 + Sizes.size1,
+                ),
+              ),
               Gaps.h5,
               GestureDetector(
                 onTap: () => _onSignUpTap(context),
@@ -72,6 +77,7 @@ class LoginScreen extends StatelessWidget {
                   "Sign up",
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
+                    fontSize: Sizes.size16 + Sizes.size1,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
