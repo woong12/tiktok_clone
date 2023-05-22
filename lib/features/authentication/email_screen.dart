@@ -34,7 +34,6 @@ class _EmailScreenState extends State<EmailScreen> {
 
   String? _isEmailValid() {
     if (_email.isEmpty) return null;
-    // preform some val.
     final regExp = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     if (!regExp.hasMatch(_email)) {
@@ -52,7 +51,7 @@ class _EmailScreenState extends State<EmailScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const PassWordSceen(),
+        builder: (context) => const PasswordScreen(),
       ),
     );
   }
