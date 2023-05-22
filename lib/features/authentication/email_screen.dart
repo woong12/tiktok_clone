@@ -71,7 +71,7 @@ class _EmailScreenState extends State<EmailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Gaps.v40,
+              Gaps.v24,
               const Text(
                 "What's your email?",
                 style: TextStyle(

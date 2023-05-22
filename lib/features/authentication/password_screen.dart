@@ -85,7 +85,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Gaps.v40,
+              Gaps.v24,
               const Text(
                 "Create password",
                 style: TextStyle(
