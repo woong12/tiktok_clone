@@ -40,8 +40,31 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
   }
 
   void _setTextFieldDate(DateTime date) {
-    final textDate = date.toString().split(" ").first;
+    final day = date.day.toString().padLeft(2, '0');
+    final month = getMonthName(date.month);
+    final year = date.year.toString();
+
+    final textDate = '$month $day $year';
     _birthdayController.value = TextEditingValue(text: textDate);
+  }
+
+  String getMonthName(int month) {
+    final monthMap = {
+      1: 'January',
+      2: 'February',
+      3: 'March',
+      4: 'April',
+      5: 'May',
+      6: 'June',
+      7: 'July',
+      8: 'August',
+      9: 'September',
+      10: 'October',
+      11: 'November',
+      12: 'December',
+    };
+
+    return monthMap[month] ?? '';
   }
 
   @override
@@ -99,20 +122,19 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
               ),
               Gaps.v32,
               TextField(
-                enabled: false,
+                readOnly: true,
                 controller: _birthdayController,
-                keyboardType: TextInputType.name,
                 onEditingComplete: _onNextTap,
                 autocorrect: false,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                      color: Colors.grey.shade400,
+                      color: Colors.black45,
                     ),
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                      color: Colors.grey.shade400,
+                      color: Colors.black45,
                     ),
                   ),
                 ),
@@ -135,6 +157,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             ),
             child: SizedBox(
               height: 210,
+              width: 300,
               child: CupertinoDatePicker(
                 maximumDate: initialDate,
                 initialDateTime: initialDate,
