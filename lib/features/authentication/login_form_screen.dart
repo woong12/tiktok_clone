@@ -24,12 +24,15 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
         ),
         child: Form(
           child: Column(
-            const [
+            children: const [
               TextField(),
               Gaps.v16,
               TextField(),
               Gaps.v28,
-              FormButton(disabled: false)
+              FormButton(
+                disabled: false,
+                text: "Log In",
+              )
             ],
           ),
         ),
