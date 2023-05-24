@@ -13,7 +13,9 @@ class LoginFormScreen extends StatefulWidget {
 
 class _LoginFormScreenState extends State<LoginFormScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _passwordController = TextEditingController();
 
+  final bool _obscuredtext = true;
   Map<String, String> formData = {};
 
   void _onSubmitTap() {
@@ -24,57 +26,89 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
     }
   }
 
+  void _onScaffoldTap() {
+    FocusScope.of(context).unfocus();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Log in"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Sizes.size36,
+    return GestureDetector(
+      onTap: _onScaffoldTap,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Log in"),
         ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Gaps.v28,
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Email',
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.size36,
+          ),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Gaps.v28,
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                  ),
+                  validator: (value) {
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      formData['email'] = newValue;
+                    }
+                  },
+                  cursorColor: Theme.of(context).primaryColor,
                 ),
-                validator: (value) {
-                  return null;
-                },
-                onSaved: (newValue) {
-                  if (newValue != null) {
-                    formData['email'] = newValue;
-                  }
-                },
-              ),
-              Gaps.v16,
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Password',
+                Gaps.v16,
+                TextFormField(
+                  controller: _passwordController,
+                  obscureText: _obscuredtext,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                  ),
+                  validator: (value) {
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      formData['password'] = newValue;
+                    }
+                  },
+                  cursorColor: Theme.of(context).primaryColor,
                 ),
-                validator: (value) {
-                  return null;
-                },
-                onSaved: (newValue) {
-                  if (newValue != null) {
-                    formData['password'] = newValue;
-                  }
-                },
-              ),
-              Gaps.v28,
-              GestureDetector(
-                onTap: _onSubmitTap,
-                child: const FormButton(
-                  disabled: false,
-                  text: "Log In",
-                ),
-              )
-            ],
+                Gaps.v36,
+                GestureDetector(
+                  onTap: _onSubmitTap,
+                  child: const FormButton(
+                    disabled: false,
+                    text: "Log In",
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
