@@ -54,6 +54,8 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
               children: [
                 Gaps.v28,
                 TextFormField(
+                  autocorrect: false,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'Email',
                     enabledBorder: UnderlineInputBorder(
