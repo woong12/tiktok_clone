@@ -108,7 +108,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 const Text(
                   "Choose your interests",
                   style: TextStyle(
-                    fontSize: Sizes.size36 + Sizes.size2,
+                    fontSize: Sizes.size40,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -116,7 +116,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 const Text(
                   "Get better video recommendations",
                   style: TextStyle(
-                    fontSize: Sizes.size20,
+                    fontSize: Sizes.size20 + Sizes.size2,
                   ),
                 ),
                 Gaps.v40,
