@@ -4,6 +4,7 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/main_navigation/stf_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/nav_tab.dart';
+import 'package:tiktok_clone/features/onboarding/widgets/post_video_button.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -19,6 +20,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _onPostVideoButtonTab() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: const Text("Record video"),
+          ),
+        ),
+        fullscreenDialog: true,
+      ),
+    );
   }
 
   @override
@@ -52,6 +66,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               NavTab(
                 text: "Home",
@@ -68,60 +83,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 onTap: () => _onTap(1),
               ),
               Gaps.h24,
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    right: 22,
-                    child: Container(
-                      height: 33.5,
-                      width: 25,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: Sizes.size8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xff61d4f0),
-                        borderRadius: BorderRadius.circular(
-                          Sizes.size10,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 22,
-                    child: Container(
-                      height: 33.5,
-                      width: 25,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: Sizes.size8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(
-                          Sizes.size10,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(
-                          Sizes.size8 + Sizes.size1,
-                        )),
-                    height: 33.5,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: Sizes.size12,
-                    ),
-                    child: const Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.plus,
-                        color: Colors.black,
-                        size: 21,
-                      ),
-                    ),
-                  )
-                ],
+              GestureDetector(
+                onTap: _onPostVideoButtonTab,
+                child: const PostVideoButton(),
               ),
               Gaps.h24,
               NavTab(
