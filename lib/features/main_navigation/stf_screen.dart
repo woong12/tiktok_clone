@@ -18,7 +18,6 @@ class _StfScreenState extends State<StfScreen> {
 
   @override
   void dispose() {
-    print(_clicks);
     super.dispose();
   }
 
