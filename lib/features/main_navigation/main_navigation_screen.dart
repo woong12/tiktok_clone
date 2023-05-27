@@ -84,8 +84,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               ),
               Gaps.h24,
               GestureDetector(
-                onTap: _onPostVideoButtonTab,
-                child: const PostVideoButton(),
+                child: PostVideoButton(
+                  onTap: _onPostVideoButtonTab,
+                ),
               ),
               Gaps.h24,
               NavTab(
