@@ -155,22 +155,25 @@ class _InterestsScreenState extends State<InterestsScreen> {
           child: Row(
             children: [
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Sizes.size16 + Sizes.size2,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black.withOpacity(0.1),
+                child: GestureDetector(
+                  onTap: _onNextTap,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: Sizes.size16 + Sizes.size2,
                     ),
-                  ),
-                  child: const Text(
-                    "Skip",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: Sizes.size16,
-                      fontWeight: FontWeight.w600,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                    ),
+                    child: const Text(
+                      "Skip",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
