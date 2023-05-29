@@ -96,6 +96,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     }
   }
 
+  // Pause and Play
   void _onTogglePause() {
     if (_videoPlayerController.value.isPlaying) {
       _videoPlayerController.pause();
@@ -114,6 +115,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     }
   }
 
+  // Commnet Tap
   void _onCommentsTap(BuildContext context) async {
     if (_videoPlayerController.value.isPlaying) {
       _onTogglePause();
@@ -170,6 +172,9 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
               ),
             ),
           ),
+
+          // Description Section
+
           Positioned(
             bottom: 20,
             left: 15,
@@ -304,6 +309,9 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
               ],
             ),
           ),
+
+          // Buttons
+
           Positioned(
             bottom: 20,
             right: 10,

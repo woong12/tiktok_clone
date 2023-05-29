@@ -68,6 +68,9 @@ class _VideoCommentsState extends State<VideoComments> {
             ),
           ],
         ),
+
+        // Input
+
         body: GestureDetector(
           onTap: _stopWriting,
           child: Stack(
