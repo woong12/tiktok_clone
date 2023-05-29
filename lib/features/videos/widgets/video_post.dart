@@ -94,6 +94,9 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
         !_videoPlayerController.value.isPlaying) {
       _videoPlayerController.play();
     }
+    if (_videoPlayerController.value.isPlaying && info.visibleFraction == 0) {
+      _onTogglePause();
+    }
   }
 
   // Pause and Play
