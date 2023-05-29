@@ -120,6 +120,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     }
     await showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => const VideoComments(),
     );
