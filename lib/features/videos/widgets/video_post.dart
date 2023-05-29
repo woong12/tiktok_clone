@@ -302,7 +302,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           border: Border.all(
-                            color: Colors.black54,
+                            color: Colors.black38,
                             width: 1.5,
                           ),
                         ),
