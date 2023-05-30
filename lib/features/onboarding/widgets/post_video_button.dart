@@ -4,9 +4,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../constants/sizes.dart';
 
 class PostVideoButton extends StatefulWidget {
+  final bool inverted;
+
   const PostVideoButton({
     Key? key,
     required this.onTap,
+    required this.inverted,
   }) : super(key: key);
 
   final VoidCallback onTap;
@@ -101,7 +104,7 @@ class _PostVideoButtonState extends State<PostVideoButton>
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: !widget.inverted ? Colors.white : Colors.black,
                 borderRadius: BorderRadius.circular(
                   Sizes.size8 + Sizes.size1,
                 ),
@@ -110,10 +113,10 @@ class _PostVideoButtonState extends State<PostVideoButton>
               padding: const EdgeInsets.symmetric(
                 horizontal: Sizes.size12,
               ),
-              child: const Center(
+              child: Center(
                 child: FaIcon(
                   FontAwesomeIcons.plus,
-                  color: Colors.black,
+                  color: !widget.inverted ? Colors.black : Colors.white,
                   size: 21,
                 ),
               ),
