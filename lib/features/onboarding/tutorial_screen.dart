@@ -92,7 +92,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   Align(
                     alignment: Alignment.center,
                     child: Image(
-                      image: AssetImage("assets/tutorial1.png"),
+                      image: AssetImage("assets/images/tutorial1.png"),
                       width: 300,
                       height: 450,
                     ),
@@ -122,7 +122,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   Align(
                     alignment: Alignment.center,
                     child: Image(
-                      image: AssetImage("assets/tutorial2.png"),
+                      image: AssetImage("assets/images/tutorial2.png"),
                       width: 300,
                       height: 430,
                     ),

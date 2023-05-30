@@ -115,7 +115,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                     ],
                   ),
                   const Image(
-                    image: AssetImage("assets/cake.png"),
+                    image: AssetImage("assets/images/cake.png"),
                     width: Sizes.size80,
                     height: Sizes.size80,
                   ),
