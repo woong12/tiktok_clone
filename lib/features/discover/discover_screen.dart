@@ -25,8 +25,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   final TextEditingController _textEditingController =
       TextEditingController(text: "Initial Text");
 
-  final bool _isKeyboardVisible = false;
-
   void _onSearchChanged(String value) {}
 
   void _onSearchSubmitted(String value) {}
@@ -36,7 +34,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     super.dispose();
   }
 
-  void _onScaffoldTap() {
+  void _keyboardVisible() {
     FocusScope.of(context).unfocus();
   }
 
@@ -45,15 +43,57 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     return DefaultTabController(
       length: tabs.length,
       child: GestureDetector(
-        onTap: _onScaffoldTap,
+        onTap: _keyboardVisible,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             elevation: 0.5,
-            title: CupertinoSearchTextField(
-              controller: _textEditingController,
-              onChanged: _onSearchChanged,
-              onSubmitted: _onSearchSubmitted,
+            title: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      right: Sizes.size16,
+                      top: Sizes.size10,
+                      bottom: Sizes.size10,
+                    ),
+                    child: const FaIcon(
+                      FontAwesomeIcons.chevronLeft,
+                      size: Sizes.size24,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: CupertinoSearchTextField(
+                    controller: _textEditingController,
+                    onChanged: _onSearchChanged,
+                    onSubmitted: _onSearchSubmitted,
+                    borderRadius: BorderRadius.circular(Sizes.size4),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: Sizes.size10 + Sizes.size1,
+                      horizontal: Sizes.size6,
+                    ),
+                    prefixIcon: const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: Sizes.size6,
+                      ),
+                      child: FaIcon(
+                        FontAwesomeIcons.magnifyingGlass,
+                        size: Sizes.size16 + Sizes.size2,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: Sizes.size20 + Sizes.size2,
+                ),
+                const FaIcon(
+                  FontAwesomeIcons.sliders,
+                  size: Sizes.size20 + Sizes.size2,
+                ),
+              ],
             ),
             bottom: TabBar(
               onTap: (value) {
@@ -81,9 +121,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           ),
           body: Listener(
             onPointerMove: (event) {
-              if (_isKeyboardVisible) {
-                FocusScope.of(context).unfocus();
-              }
+              _keyboardVisible();
             },
             child: TabBarView(
               children: [

@@ -60,6 +60,8 @@ class _VideoCommentsState extends State<VideoComments> {
           ),
           actions: [
             IconButton(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onPressed: _onClosePressed,
               icon: const Icon(Icons.close_rounded),
             ),
