@@ -50,18 +50,15 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             elevation: 0.5,
             title: Row(
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                      right: Sizes.size16,
-                      top: Sizes.size10,
-                      bottom: Sizes.size10,
-                    ),
-                    child: const FaIcon(
-                      FontAwesomeIcons.chevronLeft,
-                      size: Sizes.size24,
-                    ),
+                Container(
+                  padding: const EdgeInsets.only(
+                    right: Sizes.size16,
+                    top: Sizes.size10,
+                    bottom: Sizes.size10,
+                  ),
+                  child: const FaIcon(
+                    FontAwesomeIcons.chevronLeft,
+                    size: Sizes.size24,
                   ),
                 ),
                 Expanded(
