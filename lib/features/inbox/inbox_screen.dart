@@ -21,7 +21,12 @@ class InboxScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.5,
-        title: const Text("Inbox"),
+        title: const Text(
+          "Inbox",
+          style: TextStyle(
+            fontSize: Sizes.size16,
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: _onDmPressed,
@@ -35,10 +40,15 @@ class InboxScreen extends StatelessWidget {
         children: [
           ListTile(
             onTap: () => _onActivityTab(context),
-            title: const Text(
-              'Activity',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
+            title: const Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: Sizes.size20,
+              ),
+              child: Text(
+                'Activity',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
             trailing: const FaIcon(

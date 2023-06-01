@@ -87,7 +87,12 @@ class _ActivityScreenState extends State<ActivityScreen>
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("All activity"),
+              const Text(
+                "All activity",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Gaps.h2,
               RotationTransition(
                 turns: _arrow,
@@ -104,20 +109,21 @@ class _ActivityScreenState extends State<ActivityScreen>
         children: [
           ListView(
             children: [
-              Gaps.v14,
+              Gaps.v20,
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: Sizes.size12,
+                  horizontal: Sizes.size20,
                 ),
                 child: Text(
                   "New",
                   style: TextStyle(
-                    color: Colors.grey.shade500,
+                    color: Colors.grey.shade600,
                     fontSize: Sizes.size14,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              Gaps.v14,
+              Gaps.v8,
               for (var notification in _notifications)
                 Dismissible(
                   key: Key(notification),
@@ -151,14 +157,14 @@ class _ActivityScreenState extends State<ActivityScreen>
                     ),
                   ),
                   child: ListTile(
-                    minVerticalPadding: Sizes.size16,
+                    minVerticalPadding: Sizes.size16 + Sizes.size1,
                     leading: Container(
-                      width: Sizes.size52,
+                      width: Sizes.size52 + Sizes.size2,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.white,
                         border: Border.all(
-                          color: Colors.grey.shade400,
+                          color: Colors.grey.shade300,
                           width: Sizes.size1,
                         ),
                       ),
@@ -173,7 +179,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                       text: TextSpan(
                         text: "Account updates:",
                         style: const TextStyle(
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                           fontSize: Sizes.size16,
                         ),
@@ -182,6 +188,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                             text: " Upload longer videos",
                             style: TextStyle(
                               fontWeight: FontWeight.normal,
+                              fontSize: Sizes.size16,
                             ),
                           ),
                           TextSpan(
@@ -196,7 +203,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                     ),
                     trailing: const FaIcon(
                       FontAwesomeIcons.chevronRight,
-                      size: Sizes.size16,
+                      size: Sizes.size14,
                     ),
                   ),
                 ),
@@ -222,29 +229,40 @@ class _ActivityScreenState extends State<ActivityScreen>
                   ),
                 ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  for (var tab in _tabs)
-                    ListTile(
-                      title: Row(
-                        children: [
-                          FaIcon(
-                            tab["icon"],
-                            color: Colors.black,
-                            size: Sizes.size16,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  bottom: Sizes.size8,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    for (var tab in _tabs)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: Sizes.size8,
+                        ),
+                        child: ListTile(
+                          title: Row(
+                            children: [
+                              FaIcon(
+                                tab["icon"],
+                                color: Colors.black,
+                                size: Sizes.size16,
+                              ),
+                              Gaps.h16,
+                              Text(
+                                tab["title"],
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Sizes.size14 + Sizes.size1,
+                                ),
+                              ),
+                            ],
                           ),
-                          Gaps.h20,
-                          Text(
-                            tab["title"],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                ],
+                        ),
+                      )
+                  ],
+                ),
               ),
             ),
           ),
