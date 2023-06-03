@@ -23,8 +23,7 @@ class VideoPost extends StatefulWidget {
 }
 
 class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
-  final VideoPlayerController _videoPlayerController =
-      VideoPlayerController.asset("assets/videos/video.mp4");
+  late final VideoPlayerController _videoPlayerController;
 
   final Duration _animationDuration = const Duration(milliseconds: 200);
 
@@ -40,7 +39,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     vsync: this,
   )..repeat(reverse: false);
 
-// Create an animation with value of type "double"
+  // Create an animation with value of type "double"
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
     curve: Curves.linear,
@@ -50,7 +49,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
   final String _hashtags =
       "#Island #SkyView #Ocean #Sky #NiceView #Good #Awesome #BeautifulSky";
 
-  void _onVideChange() {
+  void _onVideoChange() {
     if (_videoPlayerController.value.isInitialized) {
       if (_videoPlayerController.value.duration ==
           _videoPlayerController.value.position) {
@@ -60,10 +59,12 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
   }
 
   void _initVideoPlayer() async {
+    _videoPlayerController =
+        VideoPlayerController.asset("assets/videos/video.mp4");
     await _videoPlayerController.initialize();
+    await _videoPlayerController.setLooping(true);
+    _videoPlayerController.addListener(_onVideoChange);
     setState(() {});
-    _videoPlayerController.setLooping(true);
-    _videoPlayerController.addListener(_onVideChange);
   }
 
   @override
@@ -85,10 +86,12 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     _videoPlayerController.dispose();
     _animationController.dispose();
     _controller.dispose();
+
     super.dispose();
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
+    if (!mounted) return;
     if (info.visibleFraction == 1 &&
         !_isPaused &&
         !_videoPlayerController.value.isPlaying) {
@@ -111,6 +114,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     setState(() {
       _isPaused = !_isPaused;
     });
+
     if (_isPaused) {
       _controller.stop();
     } else {
