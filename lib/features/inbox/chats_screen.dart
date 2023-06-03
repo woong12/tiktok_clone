@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/features/inbox/chat_detail_screen.dart';
 
 import '../../constants/sizes.dart';
@@ -54,35 +55,63 @@ class _ChatsScreenState extends State<ChatsScreen> {
   }
 
   Widget _makeList(int index) {
-    return ListTile(
+    return InkWell(
       onLongPress: () => _deleteItem(index),
       onTap: _onChatTap,
-      leading: const CircleAvatar(
-        radius: 30,
-        foregroundImage: NetworkImage(
-            "https://images.unsplash.com/photo-1685027172781-d7bdd558cf6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=686&q=80"),
-        child: Text("woong"),
-      ),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(
-            "Bob ($index)",
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: Sizes.size16,
+          vertical: Sizes.size10,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const CircleAvatar(
+              radius: 33,
+              foregroundImage: NetworkImage(
+                "https://images.unsplash.com/photo-1685027172781-d7bdd558cf6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=686&q=80",
+              ),
+              child: Text("woong"),
             ),
-          ),
-          Text(
-            "2:16 PM",
-            style: TextStyle(
-              color: Colors.grey.shade500,
-              fontSize: Sizes.size12 + Sizes.size1,
+            Gaps.h12,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Bob ($index)",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: Sizes.size16 + Sizes.size1,
+                        ),
+                      ),
+                      Text(
+                        "2:16 PM",
+                        style: TextStyle(
+                          color: Colors.grey.shade500,
+                          fontSize: Sizes.size12 + Sizes.size1,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "Good morning friend!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade600,
+                      fontSize: Sizes.size16,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      subtitle: const Text("Good morning friend!"),
     );
   }
 
@@ -108,8 +137,10 @@ class _ChatsScreenState extends State<ChatsScreen> {
           return FadeTransition(
             key: UniqueKey(),
             opacity: animation,
-            child:
-                SizeTransition(sizeFactor: animation, child: _makeList(index)),
+            child: SizeTransition(
+              sizeFactor: animation,
+              child: _makeList(index),
+            ),
           );
         },
       ),

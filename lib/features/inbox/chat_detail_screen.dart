@@ -197,155 +197,158 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                         horizontal: Sizes.size16,
                         vertical: Sizes.size2,
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.size16,
-                              vertical: Sizes.size8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 234, 232, 232),
-                              borderRadius: BorderRadius.circular(
-                                Sizes.size20,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: Sizes.size16,
+                                vertical: Sizes.size8,
                               ),
-                            ),
-                            child: Row(
-                              children: const [
-                                FaIcon(
-                                  FontAwesomeIcons.solidHeart,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Colors.red,
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 234, 232, 232),
+                                borderRadius: BorderRadius.circular(
+                                  Sizes.size20,
                                 ),
-                                Gaps.h3,
-                                FaIcon(
-                                  FontAwesomeIcons.solidHeart,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Colors.red,
-                                ),
-                                Gaps.h3,
-                                FaIcon(
-                                  FontAwesomeIcons.solidHeart,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Colors.red,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Gaps.h5,
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.size16,
-                              vertical: Sizes.size8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 234, 232, 232),
-                              borderRadius: BorderRadius.circular(
-                                Sizes.size20,
                               ),
-                            ),
-                            child: Row(
-                              children: [
-                                FaIcon(
-                                  FontAwesomeIcons.solidFaceSmileBeam,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Colors.yellow.shade700,
-                                ),
-                                Gaps.h3,
-                                FaIcon(
-                                  FontAwesomeIcons.solidFaceSmileBeam,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Colors.yellow.shade700,
-                                ),
-                                Gaps.h3,
-                                FaIcon(
-                                  FontAwesomeIcons.solidFaceSmileBeam,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Colors.yellow.shade700,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Gaps.h5,
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.size16,
-                              vertical: Sizes.size8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 234, 232, 232),
-                              borderRadius: BorderRadius.circular(
-                                Sizes.size20,
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                FaIcon(
-                                  FontAwesomeIcons.solidThumbsUp,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                Gaps.h3,
-                                FaIcon(
-                                  FontAwesomeIcons.solidThumbsUp,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                Gaps.h3,
-                                FaIcon(
-                                  FontAwesomeIcons.solidThumbsUp,
-                                  size: Sizes.size16 + Sizes.size1,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Gaps.h5,
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.size12 + Sizes.size1,
-                              vertical: Sizes.size8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 234, 232, 232),
-                              borderRadius: BorderRadius.circular(
-                                Sizes.size20,
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                    left: Sizes.size4,
-                                    right: Sizes.size3,
-                                    top: Sizes.size3,
-                                    bottom: Sizes.size3,
+                              child: Row(
+                                children: const [
+                                  FaIcon(
+                                    FontAwesomeIcons.solidHeart,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Colors.red,
                                   ),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: Sizes.size1,
+                                  Gaps.h3,
+                                  FaIcon(
+                                    FontAwesomeIcons.solidHeart,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Colors.red,
+                                  ),
+                                  Gaps.h3,
+                                  FaIcon(
+                                    FontAwesomeIcons.solidHeart,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Colors.red,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Gaps.h5,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: Sizes.size16,
+                                vertical: Sizes.size8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 234, 232, 232),
+                                borderRadius: BorderRadius.circular(
+                                  Sizes.size20,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  FaIcon(
+                                    FontAwesomeIcons.solidFaceSmileBeam,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Colors.yellow.shade700,
+                                  ),
+                                  Gaps.h3,
+                                  FaIcon(
+                                    FontAwesomeIcons.solidFaceSmileBeam,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Colors.yellow.shade700,
+                                  ),
+                                  Gaps.h3,
+                                  FaIcon(
+                                    FontAwesomeIcons.solidFaceSmileBeam,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Colors.yellow.shade700,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Gaps.h5,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: Sizes.size16,
+                                vertical: Sizes.size8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 234, 232, 232),
+                                borderRadius: BorderRadius.circular(
+                                  Sizes.size20,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  FaIcon(
+                                    FontAwesomeIcons.solidThumbsUp,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  Gaps.h3,
+                                  FaIcon(
+                                    FontAwesomeIcons.solidThumbsUp,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  Gaps.h3,
+                                  FaIcon(
+                                    FontAwesomeIcons.solidThumbsUp,
+                                    size: Sizes.size16 + Sizes.size1,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Gaps.h5,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: Sizes.size12 + Sizes.size1,
+                                vertical: Sizes.size8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 234, 232, 232),
+                                borderRadius: BorderRadius.circular(
+                                  Sizes.size20,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                      left: Sizes.size4,
+                                      right: Sizes.size3,
+                                      top: Sizes.size3,
+                                      bottom: Sizes.size3,
                                     ),
-                                    borderRadius: BorderRadius.circular(
-                                      Sizes.size3,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: Sizes.size1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        Sizes.size3,
+                                      ),
+                                    ),
+                                    child: const FaIcon(
+                                      FontAwesomeIcons.play,
+                                      size: Sizes.size7,
+                                      color: Colors.black,
                                     ),
                                   ),
-                                  child: const FaIcon(
-                                    FontAwesomeIcons.play,
-                                    size: Sizes.size7,
-                                    color: Colors.black,
+                                  Gaps.h8,
+                                  const Text(
+                                    "Share post",
+                                    style: TextStyle(
+                                      fontSize: Sizes.size12 + Sizes.size1,
+                                    ),
                                   ),
-                                ),
-                                Gaps.h8,
-                                const Text(
-                                  "Share post",
-                                  style: TextStyle(
-                                    fontSize: Sizes.size12 + Sizes.size1,
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     BottomAppBar(
