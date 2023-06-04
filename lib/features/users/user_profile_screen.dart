@@ -46,6 +46,16 @@ class _UserProfileScreenState extends State<UserProfileScreen>
             title: const Text("Hello!"),
           ),
         ),
+        SliverToBoxAdapter(
+          child: Column(
+            children: const [
+              CircleAvatar(
+                backgroundColor: Colors.red,
+                radius: 20,
+              ),
+            ],
+          ),
+        ),
         SliverFixedExtentList(
           delegate: SliverChildBuilderDelegate(
             childCount: 50,
@@ -58,6 +68,11 @@ class _UserProfileScreenState extends State<UserProfileScreen>
             ),
           ),
           itemExtent: 100,
+        ),
+        SliverPersistentHeader(
+          delegate: CustomDelegate(),
+          pinned: true,
+          floating: true,
         ),
         SliverGrid(
           delegate: SliverChildBuilderDelegate(
@@ -79,5 +94,37 @@ class _UserProfileScreenState extends State<UserProfileScreen>
         ),
       ],
     );
+  }
+}
+
+class CustomDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.indigo,
+      child: const FractionallySizedBox(
+        heightFactor: 1,
+        child: Center(
+          child: Text(
+            "Title!!",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => 150;
+
+  @override
+  double get minExtent => 80;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }
