@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/inbox/widgets/chat_imoticons.dart';
 
 class ChatDetailScreen extends StatefulWidget {
   const ChatDetailScreen({super.key});
@@ -201,106 +202,19 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                         onTap: () {},
                         child: Row(
                           children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: Sizes.size16,
-                                vertical: Sizes.size8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 234, 232, 232),
-                                borderRadius: BorderRadius.circular(
-                                  Sizes.size20,
-                                ),
-                              ),
-                              child: Row(
-                                children: const [
-                                  FaIcon(
-                                    FontAwesomeIcons.solidHeart,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Colors.red,
-                                  ),
-                                  Gaps.h3,
-                                  FaIcon(
-                                    FontAwesomeIcons.solidHeart,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Colors.red,
-                                  ),
-                                  Gaps.h3,
-                                  FaIcon(
-                                    FontAwesomeIcons.solidHeart,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Colors.red,
-                                  ),
-                                ],
-                              ),
+                            const ChatImoticons(
+                              icon: FontAwesomeIcons.solidHeart,
+                              color: Colors.red,
                             ),
                             Gaps.h5,
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: Sizes.size16,
-                                vertical: Sizes.size8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 234, 232, 232),
-                                borderRadius: BorderRadius.circular(
-                                  Sizes.size20,
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.solidFaceSmileBeam,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Colors.yellow.shade700,
-                                  ),
-                                  Gaps.h3,
-                                  FaIcon(
-                                    FontAwesomeIcons.solidFaceSmileBeam,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Colors.yellow.shade700,
-                                  ),
-                                  Gaps.h3,
-                                  FaIcon(
-                                    FontAwesomeIcons.solidFaceSmileBeam,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Colors.yellow.shade700,
-                                  ),
-                                ],
-                              ),
+                            ChatImoticons(
+                              icon: FontAwesomeIcons.solidFaceSmileBeam,
+                              color: Colors.yellow.shade700,
                             ),
                             Gaps.h5,
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: Sizes.size16,
-                                vertical: Sizes.size8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 234, 232, 232),
-                                borderRadius: BorderRadius.circular(
-                                  Sizes.size20,
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.solidThumbsUp,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                  Gaps.h3,
-                                  FaIcon(
-                                    FontAwesomeIcons.solidThumbsUp,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                  Gaps.h3,
-                                  FaIcon(
-                                    FontAwesomeIcons.solidThumbsUp,
-                                    size: Sizes.size16 + Sizes.size1,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ],
-                              ),
+                            ChatImoticons(
+                              icon: FontAwesomeIcons.solidThumbsUp,
+                              color: Theme.of(context).primaryColor,
                             ),
                             Gaps.h5,
                             Container(
