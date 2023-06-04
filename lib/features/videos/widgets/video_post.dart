@@ -333,14 +333,14 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           border: Border.all(
-                            color: Colors.black38,
+                            color: Colors.white,
                             width: 1.5,
                           ),
                         ),
                         child: const CircleAvatar(
                           radius: 27,
                           foregroundImage: NetworkImage(
-                            "https://avatars.githubusercontent.com/u/103757515?v=4",
+                            "https://images.unsplash.com/photo-1683394230814-69e5141bf06a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
                           ),
                         ),
                       ),
