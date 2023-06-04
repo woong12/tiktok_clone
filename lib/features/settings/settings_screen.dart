@@ -72,14 +72,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             subtitle: const Text("I need to know!"),
           ),
           ListTile(
-            title: const Text("Log out (ios)"),
+            title: const Text("Log out (iOS)"),
             textColor: Colors.red,
             onTap: () {
               showCupertinoDialog(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
                   title: const Text("Are you sure?"),
-                  content: const Text("Plx dont go"),
+                  content: const Text("Good Bye"),
                   actions: [
                     CupertinoDialogAction(
                       onPressed: () => Navigator.of(context).pop(),
@@ -103,7 +103,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 context: context,
                 builder: (context) => AlertDialog(
                   title: const Text("Are you sure?"),
-                  content: const Text("Plx dont go"),
+                  content: const Text("Good Bye"),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
@@ -111,6 +111,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("Yes"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Log out (iOS / bottom)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => CupertinoActionSheet(
+                  title: const Text("Are you sure?"),
+                  message: const Text("Good Bye"),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () {},
+                      child: const Text("No"),
+                    ),
+                    CupertinoActionSheetAction(
+                      isDestructiveAction: true,
+                      onPressed: () {},
                       child: const Text("Yes"),
                     ),
                   ],
