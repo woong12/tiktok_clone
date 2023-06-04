@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -29,13 +30,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             value: _notifications,
             onChanged: _onNotificationsChanged,
             title: const Text("Enable notifications"),
-            subtitle: const Text("Enable notifications"),
+            subtitle: const Text("They will be cute."),
           ),
           CheckboxListTile(
             activeColor: Colors.black,
             value: _notifications,
             onChanged: _onNotificationsChanged,
-            title: const Text("Enable notifications"),
+            title: const Text("Marketing emials"),
+            subtitle: const Text("We won't spam you."),
           ),
           ListTile(
             onTap: () async {
@@ -67,6 +69,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
               );
             },
             title: const Text("What is your birthday?"),
+            subtitle: const Text("I need to know!"),
+          ),
+          ListTile(
+            title: const Text("Log out (ios)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                  title: const Text("Are you sure?"),
+                  content: const Text("Plx dont go"),
+                  actions: [
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("No"),
+                    ),
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      isDestructiveAction: true,
+                      child: const Text("Yes"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("Log out (Android)"),
+            textColor: Colors.red,
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text("Are you sure?"),
+                  content: const Text("Plx dont go"),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("No"),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("Yes"),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
           const AboutListTile()
         ],
