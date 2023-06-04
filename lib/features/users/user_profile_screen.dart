@@ -227,11 +227,39 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                   children: [
                     AspectRatio(
                       aspectRatio: 9 / 12.5,
-                      child: FadeInImage.assetNetwork(
-                        fit: BoxFit.cover,
-                        placeholder: "assets/images/placeholder.jpg",
-                        image:
-                            "https://images.unsplash.com/photo-1680212703757-2565f02a653e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                      child: Stack(
+                        children: [
+                          FadeInImage.assetNetwork(
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                            placeholder: "assets/images/placeholder.jpg",
+                            image:
+                                "https://images.unsplash.com/photo-1683229903327-d3ffbe2f0da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+                          ),
+                          Positioned(
+                            bottom: 5,
+                            left: 8,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                FaIcon(
+                                  FontAwesomeIcons.play,
+                                  color: Colors.white,
+                                  size: Sizes.size14 + Sizes.size1,
+                                ),
+                                Gaps.h8,
+                                Text(
+                                  "4.1M",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: Sizes.size12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
