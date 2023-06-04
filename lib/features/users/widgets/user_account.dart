@@ -24,7 +24,7 @@ class UserAccount extends StatelessWidget {
             fontSize: Sizes.size16 + Sizes.size1,
           ),
         ),
-        Gaps.v4,
+        Gaps.v3,
         Text(
           infoWord,
           style: TextStyle(
