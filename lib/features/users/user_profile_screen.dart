@@ -185,15 +185,20 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                       padding: EdgeInsets.symmetric(
                         horizontal: Sizes.size40,
                       ),
-                      child: Text(
-                        "Enjoy the world's famous tourist attractions!             ⬇️",
-                        textAlign: TextAlign.center,
+                      child: Column(
+                        children: [
+                          Text(
+                            "Enjoy the world's famous tourist attractions!",
+                            textAlign: TextAlign.center,
+                          ),
+                          Text("⬇️")
+                        ],
                       ),
                     ),
                     Gaps.v8,
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         FaIcon(
                           FontAwesomeIcons.link,
                           size: Sizes.size12,
@@ -245,12 +250,12 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                             image:
                                 "https://images.unsplash.com/photo-1683229903327-d3ffbe2f0da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
                           ),
-                          Positioned(
+                          const Positioned(
                             bottom: 5,
                             left: 8,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 FaIcon(
                                   FontAwesomeIcons.play,
                                   color: Colors.white,

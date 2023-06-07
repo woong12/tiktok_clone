@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:marquee/marquee.dart';
@@ -33,6 +34,8 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
 
   bool showMore = false;
 
+  bool volumeHigh = false;
+
   // Create a controller
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 3),
@@ -63,8 +66,23 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
         VideoPlayerController.asset("assets/videos/video.mp4");
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
+    if (kIsWeb) {
+      await _videoPlayerController.setVolume(0);
+      volumeHigh = true;
+    }
     _videoPlayerController.addListener(_onVideoChange);
     setState(() {});
+  }
+
+  void onVolumnControl() {
+    if (volumeHigh == true) {
+      _videoPlayerController.setVolume(1);
+    } else {
+      _videoPlayerController.setVolume(0);
+    }
+    setState(() {
+      volumeHigh = !volumeHigh;
+    });
   }
 
   @override
@@ -314,6 +332,26 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
                   ],
                 ),
               ],
+            ),
+          ),
+
+          // Volume control
+
+          Positioned(
+            right: 20,
+            top: 20,
+            child: IconButton(
+              highlightColor: Colors.transparent,
+              icon: volumeHigh
+                  ? const FaIcon(
+                      FontAwesomeIcons.volumeXmark,
+                      color: Colors.white,
+                    )
+                  : const FaIcon(
+                      FontAwesomeIcons.volumeHigh,
+                      color: Colors.white,
+                    ),
+              onPressed: onVolumnControl,
             ),
           ),
 
