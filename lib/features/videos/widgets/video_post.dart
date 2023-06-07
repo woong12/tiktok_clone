@@ -303,7 +303,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
                         width: 180,
                         height: 20,
                         child: Marquee(
-                          text: "original sound (TikTokTunes)",
+                          text: "original sound (TikTok Tunes)",
                           style: const TextStyle(
                             fontSize: Sizes.size16 + Sizes.size1,
                             color: Colors.white,
