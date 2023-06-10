@@ -83,13 +83,13 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.v24,
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "When's your birthday?",
                         style: TextStyle(
                           fontSize: Sizes.size20 + Sizes.size1,
@@ -97,24 +97,21 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                         ),
                       ),
                       Gaps.v8,
-                      Text(
-                        "Your birthday won't be shown",
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: Sizes.size14 + Sizes.size1,
-                        ),
-                      ),
-                      Gaps.v2,
-                      Text(
-                        "publicly.",
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: Sizes.size14 + Sizes.size1,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        child: const Opacity(
+                          opacity: 0.8,
+                          child: Text(
+                            "Your birthday won't be shown publicly.",
+                            style: TextStyle(
+                              fontSize: Sizes.size14 + Sizes.size1,
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  Image(
+                  const Image(
                     image: AssetImage("assets/images/cake.png"),
                     width: Sizes.size80,
                     height: Sizes.size80,
