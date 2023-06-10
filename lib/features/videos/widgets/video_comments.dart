@@ -139,8 +139,8 @@ class _VideoCommentsState extends State<VideoComments> {
                               ],
                             ),
                             Gaps.v10,
-                            Row(
-                              children: const [
+                            const Row(
+                              children: [
                                 Text(
                                   "View replies (194)",
                                   style: TextStyle(

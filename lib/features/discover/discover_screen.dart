@@ -51,49 +51,54 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             elevation: 0.5,
-            title: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(
-                    right: Sizes.size16,
-                    top: Sizes.size10,
-                    bottom: Sizes.size10,
-                  ),
-                  child: const FaIcon(
-                    FontAwesomeIcons.chevronLeft,
-                    size: Sizes.size24,
-                  ),
-                ),
-                Expanded(
-                  child: CupertinoSearchTextField(
-                    controller: _textEditingController,
-                    onChanged: _onSearchChanged,
-                    onSubmitted: _onSearchSubmitted,
-                    borderRadius: BorderRadius.circular(Sizes.size4),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Sizes.size10 + Sizes.size1,
-                      horizontal: Sizes.size6,
+            title: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: Breakpoints.sm,
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(
+                      right: Sizes.size16,
+                      top: Sizes.size10,
+                      bottom: Sizes.size10,
                     ),
-                    prefixIcon: const Padding(
-                      padding: EdgeInsets.symmetric(
+                    child: const FaIcon(
+                      FontAwesomeIcons.chevronLeft,
+                      size: Sizes.size24,
+                    ),
+                  ),
+                  Expanded(
+                    child: CupertinoSearchTextField(
+                      controller: _textEditingController,
+                      onChanged: _onSearchChanged,
+                      onSubmitted: _onSearchSubmitted,
+                      borderRadius: BorderRadius.circular(Sizes.size4),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: Sizes.size10 + Sizes.size1,
                         horizontal: Sizes.size6,
                       ),
-                      child: FaIcon(
-                        FontAwesomeIcons.magnifyingGlass,
-                        size: Sizes.size16 + Sizes.size2,
-                        color: Colors.black,
+                      prefixIcon: const Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: Sizes.size6,
+                        ),
+                        child: FaIcon(
+                          FontAwesomeIcons.magnifyingGlass,
+                          size: Sizes.size16 + Sizes.size2,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  width: Sizes.size20 + Sizes.size2,
-                ),
-                const FaIcon(
-                  FontAwesomeIcons.sliders,
-                  size: Sizes.size20 + Sizes.size2,
-                ),
-              ],
+                  const SizedBox(
+                    width: Sizes.size20 + Sizes.size2,
+                  ),
+                  const FaIcon(
+                    FontAwesomeIcons.sliders,
+                    size: Sizes.size20 + Sizes.size2,
+                  ),
+                ],
+              ),
             ),
             bottom: TabBar(
               onTap: (value) {
