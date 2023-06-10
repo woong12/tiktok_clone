@@ -83,12 +83,12 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.v24,
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         "When's your birthday?",
                         style: TextStyle(
@@ -114,7 +114,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
                       ),
                     ],
                   ),
-                  const Image(
+                  Image(
                     image: AssetImage("assets/images/cake.png"),
                     width: Sizes.size80,
                     height: Sizes.size80,
