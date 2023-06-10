@@ -455,6 +455,32 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                 image:
                                     "https://images.unsplash.com/photo-1683229903327-d3ffbe2f0da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
                               ),
+                              index == 0
+                                  ? Positioned(
+                                      top: Sizes.size4,
+                                      left: Sizes.size4,
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: Sizes.size4,
+                                          vertical: Sizes.size3,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context).primaryColor,
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(Sizes.size3),
+                                          ),
+                                        ),
+                                        child: const Text(
+                                          "Pinned",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: Sizes.size12,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                               const Positioned(
                                 bottom: 5,
                                 left: 8,
