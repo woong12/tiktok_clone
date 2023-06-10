@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
+import '../../../constants/breakpoint.dart';
+
 class VideoComments extends StatefulWidget {
   const VideoComments({super.key});
 
@@ -184,89 +186,95 @@ class _VideoCommentsState extends State<VideoComments> {
               ),
               Positioned(
                 bottom: 0,
-                width: size.width,
-                child: BottomAppBar(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: Sizes.size16,
-                      vertical: Sizes.size10,
-                    ),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 18,
-                          backgroundColor: Colors.grey.shade500,
-                          foregroundColor: Colors.white,
-                          child: const Text("AA"),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: Breakpoints.sm),
+                  child: Positioned(
+                    bottom: 0,
+                    width: size.width,
+                    child: BottomAppBar(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: Sizes.size16,
+                          vertical: Sizes.size10,
                         ),
-                        Gaps.h10,
-                        Expanded(
-                          child: SizedBox(
-                            height: Sizes.size44,
-                            child: TextField(
-                              onTap: _onStartWriting,
-                              expands: true,
-                              minLines: null,
-                              maxLines: null,
-                              textInputAction: TextInputAction.newline,
-                              cursorColor: Theme.of(context).primaryColor,
-                              decoration: InputDecoration(
-                                hintText: "Add comment...",
-                                hintStyle: TextStyle(
-                                  color: Colors.grey.shade600,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: Sizes.size16 + Sizes.size1,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    Sizes.size10,
-                                  ),
-                                  borderSide: BorderSide.none,
-                                ),
-                                filled: true,
-                                fillColor: Colors.grey.shade100,
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: Sizes.size12,
-                                ),
-                                suffixIcon: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.at,
-                                      color: Colors.grey.shade900,
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Colors.grey.shade500,
+                              foregroundColor: Colors.white,
+                              child: const Text("AA"),
+                            ),
+                            Gaps.h10,
+                            Expanded(
+                              child: SizedBox(
+                                height: Sizes.size44,
+                                child: TextField(
+                                  onTap: _onStartWriting,
+                                  expands: true,
+                                  minLines: null,
+                                  maxLines: null,
+                                  textInputAction: TextInputAction.newline,
+                                  cursorColor: Theme.of(context).primaryColor,
+                                  decoration: InputDecoration(
+                                    hintText: "Add comment...",
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: Sizes.size16 + Sizes.size1,
                                     ),
-                                    Gaps.h14,
-                                    FaIcon(
-                                      FontAwesomeIcons.gift,
-                                      color: Colors.grey.shade900,
-                                    ),
-                                    Gaps.h14,
-                                    FaIcon(
-                                      FontAwesomeIcons.faceSmile,
-                                      color: Colors.grey.shade900,
-                                    ),
-                                    Gaps.h14,
-                                    if (_isWriting)
-                                      GestureDetector(
-                                        onTap: _stopWriting,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                            right: Sizes.size10,
-                                          ),
-                                          child: FaIcon(
-                                            FontAwesomeIcons.circleArrowUp,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
-                                        ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        Sizes.size10,
                                       ),
-                                  ],
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.grey.shade100,
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: Sizes.size12,
+                                    ),
+                                    suffixIcon: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.at,
+                                          color: Colors.grey.shade900,
+                                        ),
+                                        Gaps.h14,
+                                        FaIcon(
+                                          FontAwesomeIcons.gift,
+                                          color: Colors.grey.shade900,
+                                        ),
+                                        Gaps.h14,
+                                        FaIcon(
+                                          FontAwesomeIcons.faceSmile,
+                                          color: Colors.grey.shade900,
+                                        ),
+                                        Gaps.h14,
+                                        if (_isWriting)
+                                          GestureDetector(
+                                            onTap: _stopWriting,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                right: Sizes.size10,
+                                              ),
+                                              child: FaIcon(
+                                                FontAwesomeIcons.circleArrowUp,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
