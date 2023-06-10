@@ -145,60 +145,36 @@ class _InterestsScreenState extends State<InterestsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 2,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            bottom: Sizes.size36,
-            top: Sizes.size16,
-            left: Sizes.size32,
-            right: Sizes.size32,
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: _onNextTap,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Sizes.size16 + Sizes.size2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isDarkMode(context) ? Colors.black : Colors.white,
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.1),
-                      ),
-                    ),
-                    child: const Opacity(
-                      opacity: 1.0,
-                      child: Text(
-                        "Skip",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(
+          bottom: Sizes.size56,
+          top: Sizes.size16,
+          left: Sizes.size32,
+          right: Sizes.size32,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: _onNextTap,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.size16 + Sizes.size2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isDarkMode(context)
+                        ? Colors.grey.shade900
+                        : Colors.white,
+                    border: Border.all(
+                      color: Colors.black.withOpacity(0.1),
                     ),
                   ),
-                ),
-              ),
-              Gaps.h10,
-              Expanded(
-                child: GestureDetector(
-                  onTap: _onNextTap,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Sizes.size16 + Sizes.size2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    child: const Text(
-                      "Next",
+                  child: const Opacity(
+                    opacity: 1.0,
+                    child: Text(
+                      "Skip",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -206,8 +182,31 @@ class _InterestsScreenState extends State<InterestsScreen> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            Gaps.h10,
+            Expanded(
+              child: GestureDetector(
+                onTap: _onNextTap,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.size16 + Sizes.size2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  child: const Text(
+                    "Next",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: Sizes.size16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

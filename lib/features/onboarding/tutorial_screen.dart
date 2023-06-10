@@ -133,13 +133,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
+        bottomNavigationBar: Container(
           color: isDarkMode(context) ? Colors.black : Colors.white,
-          elevation: 0,
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size24,
-              horizontal: Sizes.size32,
+            padding: const EdgeInsets.only(
+              top: Sizes.size24,
+              bottom: Sizes.size52,
+              right: Sizes.size32,
+              left: Sizes.size32,
             ),
             child: AnimatedOpacity(
               duration: const Duration(milliseconds: 300),
@@ -155,6 +156,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   "Start watching",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
+                    color: Colors.white,
                   ),
                 ),
               ),

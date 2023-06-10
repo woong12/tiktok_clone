@@ -102,12 +102,14 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                 ),
                                 Gaps.v14,
                                 SizedBox(
-                                  height: Sizes.size40,
+                                  height: Sizes.size48,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const UserAccount(
-                                          number: "37", infoWord: "Following"),
+                                        number: "37",
+                                        infoWord: "Following",
+                                      ),
                                       VerticalDivider(
                                         width: Sizes.size32 + Sizes.size2,
                                         thickness: Sizes.size1,
@@ -116,8 +118,9 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                         endIndent: Sizes.size12,
                                       ),
                                       const UserAccount(
-                                          number: "10.5M",
-                                          infoWord: "Followers"),
+                                        number: "10.5M",
+                                        infoWord: "Followers",
+                                      ),
                                       VerticalDivider(
                                         width: Sizes.size32 + Sizes.size2,
                                         thickness: Sizes.size1,
@@ -126,7 +129,9 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                         endIndent: Sizes.size12,
                                       ),
                                       const UserAccount(
-                                          number: "149.3M", infoWord: "Likes"),
+                                        number: "149.3M",
+                                        infoWord: "Likes",
+                                      ),
                                     ],
                                   ),
                                 ),

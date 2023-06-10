@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/inbox/activity_screen.dart';
 import 'package:tiktok_clone/features/inbox/chats_screen.dart';
+import 'package:tiktok_clone/utils.dart';
 
 class InboxScreen extends StatefulWidget {
   const InboxScreen({super.key});
@@ -30,6 +31,7 @@ class _InboxScreenState extends State<InboxScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = isDarkMode(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.5,
@@ -64,9 +66,9 @@ class _InboxScreenState extends State<InboxScreen> {
                 ),
               ),
             ),
-            trailing: const FaIcon(
+            trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
-              color: Colors.black,
+              color: isDark ? Colors.white : Colors.black,
               size: Sizes.size14,
             ),
           ),
@@ -100,9 +102,9 @@ class _InboxScreenState extends State<InboxScreen> {
                 fontSize: Sizes.size14,
               ),
             ),
-            trailing: const FaIcon(
+            trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
-              color: Colors.black,
+              color: isDark ? Colors.white : Colors.black,
               size: Sizes.size14,
             ),
           ),
