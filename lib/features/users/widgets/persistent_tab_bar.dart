@@ -12,7 +12,6 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).appBarTheme.backgroundColor,
-        // color: isDark ? Colors.grey.shade900 : Colors.white,
         border: Border.symmetric(
           horizontal: BorderSide(
             color: isDark ? Colors.grey.shade700 : Colors.grey.shade300,
