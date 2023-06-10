@@ -340,8 +340,8 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
           // Volume control
 
           Positioned(
-            right: 20,
-            top: 20,
+            right: 10,
+            top: 45,
             child: IconButton(
               highlightColor: Colors.transparent,
               icon: volumeHigh
