@@ -138,7 +138,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   ),
                   itemCount: 20,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: width > Breakpoints.lg ? 5 : 2,
+                    crossAxisCount: width > Breakpoints.lg
+                        ? 5
+                        : width > Breakpoints.md
+                            ? 3
+                            : 2,
                     crossAxisSpacing: Sizes.size10,
                     mainAxisSpacing: Sizes.size10,
                     childAspectRatio: 9 / 18.3,
@@ -174,7 +178,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           ),
                         ),
                         Gaps.v8,
-                        if (constraints.maxWidth < 200 ||
+                        if (constraints.maxWidth < 210 ||
                             constraints.maxWidth > 250)
                           Row(
                             children: [

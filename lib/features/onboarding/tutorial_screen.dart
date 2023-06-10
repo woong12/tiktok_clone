@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/utils.dart';
 import '../../constants/sizes.dart';
 
 enum Direction { right, left }
@@ -69,9 +70,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   ? CrossFadeState.showFirst
                   : CrossFadeState.showSecond,
               duration: const Duration(milliseconds: 300),
-              firstChild: Column(
+              firstChild: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Gaps.v52,
                   Text(
                     "Swipe right",
@@ -99,9 +100,9 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   )
                 ],
               ),
-              secondChild: Column(
+              secondChild: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Gaps.v52,
                   Text(
                     "Watch videos",
@@ -133,6 +134,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
+          color: isDarkMode(context) ? Colors.black : Colors.white,
           elevation: 0,
           child: Padding(
             padding: const EdgeInsets.symmetric(
