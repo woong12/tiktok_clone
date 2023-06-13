@@ -1,16 +1,11 @@
 {
-  "signUpTitle": "Sign up for {nameOfTheApp} {when}",
+  "signUpTitle": "Sign up for {nameOfTheApp}",
   "@signUpTitle": {
     "description": "The title people see when they open the app for the forst time",
     "placeholders": {
       "nameOfTheApp": {
         "type": "String",
         "examples": "TikTok"
-      },
-      "when": {
-        "type": "DateTime",
-        "format": "LLL dd",
-        "isCustomDateFormat": "true"
       }
     }
   },
