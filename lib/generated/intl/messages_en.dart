@@ -20,19 +20,28 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(gender) => "Log in ${Intl.select(gender, {
+  static String m0(value) => "${value}";
+
+  static String m1(value) => "${value}";
+
+  static String m2(value, value2) =>
+      "${value} ${Intl.plural(value2, one: 'comment', other: 'comments')}";
+
+  static String m3(value) => "${value}";
+
+  static String m4(gender) => "Log in ${Intl.select(gender, {
             'all': ' ',
             'male': 'sir',
             'female': 'madam',
             'other': 'human',
           })}";
 
-  static String m1(nameOfTheApp) => "Log into your ${nameOfTheApp} account";
+  static String m5(nameOfTheApp) => "Log into your ${nameOfTheApp} account";
 
-  static String m2(videoCount) =>
+  static String m6(videoCount) =>
       "Create a profile, follow other accounts, make your own ${Intl.plural(videoCount, zero: 'no videos', one: 'video', other: 'videos')}, and more.";
 
-  static String m3(nameOfTheApp) => "Sign up for ${nameOfTheApp}";
+  static String m7(nameOfTheApp) => "Sign up for ${nameOfTheApp}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -40,11 +49,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "appleButton":
             MessageLookupByLibrary.simpleMessage("Continue with Apple"),
+        "bookmarkCount": m0,
+        "commentCount": m1,
+        "commentTitle": m2,
         "emailPasswordButton":
             MessageLookupByLibrary.simpleMessage("Use email & password"),
-        "logIn": m0,
-        "loginTitle": m1,
-        "signUpSubtitle": m2,
-        "signUpTitle": m3
+        "likeCount": m3,
+        "logIn": m4,
+        "loginTitle": m5,
+        "signUpSubtitle": m6,
+        "signUpTitle": m7
       };
 }

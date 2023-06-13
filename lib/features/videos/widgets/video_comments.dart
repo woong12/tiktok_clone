@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:tiktok_clone/utils.dart';
 
 import '../../../constants/breakpoint.dart';
@@ -54,9 +55,9 @@ class _VideoCommentsState extends State<VideoComments> {
           backgroundColor: isDark ? null : Colors.grey.shade50,
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: const Text(
-            "22796 comments",
-            style: TextStyle(
+          title: Text(
+            S.of(context).commentTitle(542315, 542315),
+            style: const TextStyle(
               fontSize: Sizes.size14,
               fontWeight: FontWeight.w500,
             ),
