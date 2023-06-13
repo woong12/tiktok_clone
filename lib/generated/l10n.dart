@@ -70,13 +70,13 @@ class S {
     );
   }
 
-  /// `Create a profile, follow other accounts, make your own videos, and more.`
-  String get signUpSubtitle {
+  /// `Create a profile, follow other accounts, make your own {videoCount, plural, =0{no videos} =1{video} other{videos}}, and more.`
+  String signUpSubtitle(num videoCount) {
     return Intl.message(
-      'Create a profile, follow other accounts, make your own videos, and more.',
+      'Create a profile, follow other accounts, make your own ${Intl.plural(videoCount, zero: 'no videos', one: 'video', other: 'videos')}, and more.',
       name: 'signUpSubtitle',
       desc: '',
-      args: [],
+      args: [videoCount],
     );
   }
 
@@ -110,13 +110,18 @@ class S {
     );
   }
 
-  /// `Log in`
-  String get logIn {
+  /// `Log in {gender, select, all{ } male{sir} female{madam} other{human}}`
+  String logIn(Object gender) {
     return Intl.message(
-      'Log in',
+      'Log in ${Intl.select(gender, {
+            'all': ' ',
+            'male': 'sir',
+            'female': 'madam',
+            'other': 'human'
+          })}',
       name: 'logIn',
       desc: '',
-      args: [],
+      args: [gender],
     );
   }
 }
