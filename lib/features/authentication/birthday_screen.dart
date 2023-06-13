@@ -149,8 +149,10 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
-          elevation: 0,
+        bottomNavigationBar: Container(
+          padding: const EdgeInsets.only(
+            bottom: Sizes.size40,
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: Sizes.size56,
