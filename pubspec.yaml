@@ -49,6 +49,7 @@ dependencies:
   google_fonts: 4.0.1
 
   marquee: ^2.2.3
+  go_router: 6.0.2
 
 dev_dependencies:
   flutter_test:
