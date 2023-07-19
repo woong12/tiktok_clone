@@ -13,6 +13,7 @@ class VideoRecordingScreen extends StatefulWidget {
 
 class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
   bool _hasPermission = false;
+  bool _permissionDenied = false;
 
   late final CameraController _cameraController;
 
@@ -44,8 +45,10 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
     if (!cameraDenied && !micDenied) {
       _hasPermission = true;
       await initCamera();
-      setState(() {});
+    } else {
+      _permissionDenied = true;
     }
+    setState(() {});
   }
 
   @override
@@ -60,29 +63,47 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
       backgroundColor: Colors.black,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: !_hasPermission || !_cameraController.value.isInitialized
-            ? const Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Initializing...",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: Sizes.size20,
-                    ),
-                  ),
-                  Gaps.v20,
-                  CircularProgressIndicator.adaptive()
-                ],
+        child: _permissionDenied
+            ? const CameraStatus(
+                status: "Permission Denied\n Setting > App > Turn on Camera",
               )
-            : Stack(
-                alignment: Alignment.center,
-                children: [
-                  CameraPreview(_cameraController),
-                ],
-              ),
+            : !_hasPermission || !_cameraController.value.isInitialized
+                ? const CameraStatus(status: "Initializing...")
+                : Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CameraPreview(_cameraController),
+                    ],
+                  ),
       ),
+    );
+  }
+}
+
+class CameraStatus extends StatelessWidget {
+  final String status;
+
+  const CameraStatus({
+    super.key,
+    required this.status,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          status,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: Sizes.size20,
+          ),
+        ),
+        Gaps.v20,
+        const CircularProgressIndicator.adaptive()
+      ],
     );
   }
 }
