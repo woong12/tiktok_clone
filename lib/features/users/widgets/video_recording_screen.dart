@@ -104,44 +104,32 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
                               ),
                             ),
                             Gaps.v10,
-                            IconButton(
-                              color: _flashMode == FlashMode.off
-                                  ? Colors.amber.shade200
-                                  : Colors.white,
-                              onPressed: () => _setFlashMode(FlashMode.off),
-                              icon: const Icon(
-                                Icons.flash_off_rounded,
-                              ),
+                            flashStatus(
+                              Colors.amber.shade200,
+                              Colors.white,
+                              Icons.flash_off_rounded,
+                              FlashMode.off,
                             ),
                             Gaps.v10,
-                            IconButton(
-                              color: _flashMode == FlashMode.always
-                                  ? Colors.amber.shade200
-                                  : Colors.white,
-                              onPressed: () => _setFlashMode(FlashMode.always),
-                              icon: const Icon(
-                                Icons.flash_on_rounded,
-                              ),
+                            flashStatus(
+                              Colors.amber.shade200,
+                              Colors.white,
+                              Icons.flash_on_rounded,
+                              FlashMode.always,
                             ),
                             Gaps.v10,
-                            IconButton(
-                              color: _flashMode == FlashMode.auto
-                                  ? Colors.amber.shade200
-                                  : Colors.white,
-                              onPressed: () => _setFlashMode(FlashMode.auto),
-                              icon: const Icon(
-                                Icons.flash_auto_rounded,
-                              ),
+                            flashStatus(
+                              Colors.amber.shade200,
+                              Colors.white,
+                              Icons.flash_auto_rounded,
+                              FlashMode.auto,
                             ),
                             Gaps.v10,
-                            IconButton(
-                              color: _flashMode == FlashMode.torch
-                                  ? Colors.amber.shade200
-                                  : Colors.white,
-                              onPressed: () => _setFlashMode(FlashMode.torch),
-                              icon: const Icon(
-                                Icons.flashlight_on_rounded,
-                              ),
+                            flashStatus(
+                              Colors.amber.shade200,
+                              Colors.white,
+                              Icons.flashlight_on_rounded,
+                              FlashMode.torch,
                             ),
                           ],
                         ),
@@ -149,6 +137,14 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
                     ],
                   ),
       ),
+    );
+  }
+
+  IconButton flashStatus(onColor, offColor, icon, status) {
+    return IconButton(
+      color: _flashMode == status ? onColor : offColor,
+      onPressed: () => _setFlashMode(status),
+      icon: Icon(icon),
     );
   }
 }
