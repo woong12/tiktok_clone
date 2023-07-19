@@ -9,7 +9,12 @@ import 'package:tiktok_clone/features/users/widgets/user_account.dart';
 import 'package:tiktok_clone/utils.dart';
 
 class UserProfileScreen extends StatefulWidget {
-  const UserProfileScreen({super.key});
+  final String username;
+
+  const UserProfileScreen({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
@@ -58,7 +63,7 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                 headerSliverBuilder: (context, innerBoxIsScrolled) {
                   return [
                     SliverAppBar(
-                      title: const Text("Woong"),
+                      title: Text(widget.username),
                       actions: [
                         IconButton(
                           onPressed: _onGearPressed,
@@ -85,9 +90,9 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Text(
-                                      "@woong",
-                                      style: TextStyle(
+                                    Text(
+                                      "@${widget.username}",
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: Sizes.size16,
                                       ),
@@ -270,9 +275,9 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            const Text(
-                                              "@woong",
-                                              style: TextStyle(
+                                            Text(
+                                              "@${widget.username}",
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: Sizes.size18,
                                               ),
@@ -285,14 +290,16 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                             ),
                                             Gaps.h40,
                                             SizedBox(
-                                              height: Sizes.size40,
+                                              height:
+                                                  Sizes.size44 + Sizes.size2,
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   const UserAccount(
-                                                      number: "37",
-                                                      infoWord: "Following"),
+                                                    number: "37",
+                                                    infoWord: "Following",
+                                                  ),
                                                   VerticalDivider(
                                                     width: Sizes.size32 +
                                                         Sizes.size2,
@@ -302,8 +309,9 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                                     endIndent: Sizes.size12,
                                                   ),
                                                   const UserAccount(
-                                                      number: "10.5M",
-                                                      infoWord: "Followers"),
+                                                    number: "10.5M",
+                                                    infoWord: "Followers",
+                                                  ),
                                                   VerticalDivider(
                                                     width: Sizes.size32 +
                                                         Sizes.size2,
@@ -313,8 +321,9 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                                     endIndent: Sizes.size12,
                                                   ),
                                                   const UserAccount(
-                                                      number: "149.3M",
-                                                      infoWord: "Likes"),
+                                                    number: "149.3M",
+                                                    infoWord: "Likes",
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -323,7 +332,8 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                         Gaps.v10,
                                         ConstrainedBox(
                                           constraints: const BoxConstraints(
-                                              maxWidth: Breakpoints.ssm),
+                                            maxWidth: Breakpoints.ssm,
+                                          ),
                                           child: FractionallySizedBox(
                                             widthFactor: 0.64,
                                             child: Row(
@@ -368,8 +378,10 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                                         BorderRadius.circular(
                                                       Sizes.size10,
                                                     ),
-                                                    color: const Color.fromARGB(
-                                                        255, 236, 236, 243),
+                                                    color: isDark
+                                                        ? Colors.grey.shade800
+                                                        : const Color.fromARGB(
+                                                            255, 236, 236, 243),
                                                   ),
                                                   child: const FaIcon(
                                                     FontAwesomeIcons.youtube,
@@ -390,8 +402,10 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                                                         BorderRadius.circular(
                                                       Sizes.size10,
                                                     ),
-                                                    color: const Color.fromARGB(
-                                                        255, 236, 236, 243),
+                                                    color: isDark
+                                                        ? Colors.grey.shade800
+                                                        : const Color.fromARGB(
+                                                            255, 236, 236, 243),
                                                   ),
                                                   child: const FaIcon(
                                                     FontAwesomeIcons.caretDown,
