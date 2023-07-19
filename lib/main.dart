@@ -40,7 +40,7 @@ class TikTokApp extends StatelessWidget {
       ],
       supportedLocales: const [
         Locale("en"),
-        Locale("ko"),
+        // Locale("ko"),
       ],
       theme: ThemeData(
         useMaterial3: true,
@@ -73,8 +73,8 @@ class TikTokApp extends StatelessWidget {
           indicatorColor: Colors.black,
         ),
         listTileTheme: const ListTileThemeData(
-            // iconColor: Colors.black,
-            ),
+          iconColor: Colors.black,
+        ),
       ),
       darkTheme: ThemeData(
         useMaterial3: true,

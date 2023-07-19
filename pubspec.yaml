@@ -50,6 +50,9 @@ dependencies:
 
   marquee: ^2.2.3
   go_router: 6.0.2
+  camera: ^0.10.5+2
+
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:
