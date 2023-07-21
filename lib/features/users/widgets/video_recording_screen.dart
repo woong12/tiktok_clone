@@ -21,6 +21,10 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
 
   bool _isSelfieMode = false;
 
+  double _currentZoom = 1.0;
+  final double _minZoom = 1.0;
+  final double _maxZoom = 4.0;
+
   late final AnimationController _buttonAnimationController =
       AnimationController(
     vsync: this,
@@ -110,9 +114,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
   }
 
   Future<void> _startRecording(TapDownDetails _) async {
-    if (_cameraController.value.isRecordingVideo) {
-      return;
-    }
+    if (_cameraController.value.isRecordingVideo) return;
 
     await _cameraController.startVideoRecording();
 
@@ -121,9 +123,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
   }
 
   Future<void> _stopRecording() async {
-    if (!_cameraController.value.isRecordingVideo) {
-      return;
-    }
+    if (!_cameraController.value.isRecordingVideo) return;
 
     _buttonAnimationController.reverse();
     _progressAnimationController.reset();
@@ -181,6 +181,15 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
         ),
       ),
     );
+  }
+
+  void _handleZooming(DragUpdateDetails details) {
+    double sensitivity = 0.005;
+
+    _currentZoom -= details.delta.dy * sensitivity;
+    _currentZoom = _currentZoom.clamp(_minZoom, _maxZoom);
+
+    _cameraController.setZoomLevel(_currentZoom);
   }
 
   @override
@@ -253,6 +262,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
                                 children: [
                                   const Spacer(),
                                   GestureDetector(
+                                    onVerticalDragUpdate: _handleZooming,
                                     onTapUp: (details) => _stopRecording(),
                                     onTapDown: _startRecording,
                                     child: ScaleTransition(
