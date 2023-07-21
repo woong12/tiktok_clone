@@ -15,7 +15,7 @@ class VideoRecordingScreen extends StatefulWidget {
 }
 
 class _VideoRecordingScreenState extends State<VideoRecordingScreen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   bool _hasPermission = false;
   bool _permissionDenied = false;
 
@@ -86,6 +86,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
   void initState() {
     super.initState();
     initPermissions();
+    WidgetsBinding.instance.addObserver(this);
     _progressAnimationController.addListener(() {
       setState(() {});
     });
@@ -150,6 +151,18 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     super.dispose();
   }
 
+  @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+    if (!_hasPermission) return;
+    if (!_cameraController.value.isInitialized) return;
+    if (state == AppLifecycleState.inactive) {
+      _cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      await initCamera();
+      setState(() {});
+    }
+  }
+
   Future<void> _onPickVideoPressed() async {
     final video = await ImagePicker().pickVideo(
       source: ImageSource.gallery,
@@ -173,7 +186,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -202,28 +215,28 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
                                       Icons.cameraswitch,
                                     ),
                                   ),
-                                  Gaps.v10,
+                                  Gaps.v5,
                                   flashStatus(
                                     Colors.amber.shade200,
                                     Colors.white,
                                     Icons.flash_off_rounded,
                                     FlashMode.off,
                                   ),
-                                  Gaps.v10,
+                                  Gaps.v5,
                                   flashStatus(
                                     Colors.amber.shade200,
                                     Colors.white,
                                     Icons.flash_on_rounded,
                                     FlashMode.always,
                                   ),
-                                  Gaps.v10,
+                                  Gaps.v5,
                                   flashStatus(
                                     Colors.amber.shade200,
                                     Colors.white,
                                     Icons.flash_auto_rounded,
                                     FlashMode.auto,
                                   ),
-                                  Gaps.v10,
+                                  Gaps.v5,
                                   flashStatus(
                                     Colors.amber.shade200,
                                     Colors.white,
@@ -320,8 +333,9 @@ class CameraStatus extends StatelessWidget {
         Text(
           status,
           style: const TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: Sizes.size20,
+            fontWeight: FontWeight.w400,
           ),
         ),
         Gaps.v20,
