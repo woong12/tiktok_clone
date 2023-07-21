@@ -25,7 +25,7 @@ class _VideoPreviewScreenState extends State<VideoPreviewScreen> {
 
   bool _savedVideo = false;
 
-  Future<void> _initvVideo() async {
+  Future<void> _initVideo() async {
     _videoPlayerController = VideoPlayerController.file(
       File(widget.video.path),
     );
@@ -40,7 +40,7 @@ class _VideoPreviewScreenState extends State<VideoPreviewScreen> {
   @override
   void initState() {
     super.initState();
-    _initvVideo();
+    _initVideo();
   }
 
   Future<void> _saveToGallery() async {
