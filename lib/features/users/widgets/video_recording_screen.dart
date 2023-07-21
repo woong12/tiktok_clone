@@ -1,5 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
@@ -127,10 +129,15 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
 
     final video = await _cameraController.stopVideoRecording();
 
+    if (!mounted) return;
+
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => VideoPreviewScreen(video: video),
+        builder: (context) => VideoPreviewScreen(
+          video: video,
+          isPicked: false,
+        ),
       ),
     );
   }
@@ -141,6 +148,26 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     _buttonAnimationController.dispose();
     _cameraController.dispose();
     super.dispose();
+  }
+
+  Future<void> _onPickVideoPressed() async {
+    final video = await ImagePicker().pickVideo(
+      source: ImageSource.gallery,
+    );
+
+    if (video == null) return;
+
+    if (!mounted) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VideoPreviewScreen(
+          video: video,
+          isPicked: true,
+        ),
+      ),
+    );
   }
 
   @override
@@ -159,82 +186,108 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
                 : Stack(
                     alignment: Alignment.center,
                     children: [
-                      CameraPreview(_cameraController),
-                      Positioned(
-                        top: Sizes.size20,
-                        right: Sizes.size20,
-                        child: Column(
+                      CameraPreview(
+                        _cameraController,
+                        child: Stack(
                           children: [
-                            IconButton(
-                              color: Colors.white,
-                              onPressed: _toggleSelfieMode,
-                              icon: const Icon(
-                                Icons.cameraswitch,
+                            Positioned(
+                              top: Sizes.size10,
+                              right: Sizes.size10,
+                              child: Column(
+                                children: [
+                                  IconButton(
+                                    color: Colors.white,
+                                    onPressed: _toggleSelfieMode,
+                                    icon: const Icon(
+                                      Icons.cameraswitch,
+                                    ),
+                                  ),
+                                  Gaps.v10,
+                                  flashStatus(
+                                    Colors.amber.shade200,
+                                    Colors.white,
+                                    Icons.flash_off_rounded,
+                                    FlashMode.off,
+                                  ),
+                                  Gaps.v10,
+                                  flashStatus(
+                                    Colors.amber.shade200,
+                                    Colors.white,
+                                    Icons.flash_on_rounded,
+                                    FlashMode.always,
+                                  ),
+                                  Gaps.v10,
+                                  flashStatus(
+                                    Colors.amber.shade200,
+                                    Colors.white,
+                                    Icons.flash_auto_rounded,
+                                    FlashMode.auto,
+                                  ),
+                                  Gaps.v10,
+                                  flashStatus(
+                                    Colors.amber.shade200,
+                                    Colors.white,
+                                    Icons.flashlight_on_rounded,
+                                    FlashMode.torch,
+                                  ),
+                                ],
                               ),
                             ),
-                            Gaps.v10,
-                            flashStatus(
-                              Colors.amber.shade200,
-                              Colors.white,
-                              Icons.flash_off_rounded,
-                              FlashMode.off,
-                            ),
-                            Gaps.v10,
-                            flashStatus(
-                              Colors.amber.shade200,
-                              Colors.white,
-                              Icons.flash_on_rounded,
-                              FlashMode.always,
-                            ),
-                            Gaps.v10,
-                            flashStatus(
-                              Colors.amber.shade200,
-                              Colors.white,
-                              Icons.flash_auto_rounded,
-                              FlashMode.auto,
-                            ),
-                            Gaps.v10,
-                            flashStatus(
-                              Colors.amber.shade200,
-                              Colors.white,
-                              Icons.flashlight_on_rounded,
-                              FlashMode.torch,
-                            ),
+                            Positioned(
+                              width: MediaQuery.of(context).size.width,
+                              bottom: Sizes.size10,
+                              child: Row(
+                                children: [
+                                  const Spacer(),
+                                  GestureDetector(
+                                    onTapUp: (details) => _stopRecording(),
+                                    onTapDown: _startRecording,
+                                    child: ScaleTransition(
+                                      scale: _buttonAnimation,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          SizedBox(
+                                            width: Sizes.size80 + Sizes.size4,
+                                            height: Sizes.size80 + Sizes.size4,
+                                            child: CircularProgressIndicator(
+                                              color: Colors.red.shade400,
+                                              strokeWidth: Sizes.size6,
+                                              value:
+                                                  _progressAnimationController
+                                                      .value,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: Sizes.size72,
+                                            height: Sizes.size72,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.red.shade400,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: IconButton(
+                                        onPressed: _onPickVideoPressed,
+                                        icon: const FaIcon(
+                                          FontAwesomeIcons.image,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      Positioned(
-                        bottom: Sizes.size40,
-                        child: GestureDetector(
-                          onTapUp: (details) => _stopRecording(),
-                          onTapDown: _startRecording,
-                          child: ScaleTransition(
-                            scale: _buttonAnimation,
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                SizedBox(
-                                  width: Sizes.size80 + Sizes.size4,
-                                  height: Sizes.size80 + Sizes.size4,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.red.shade400,
-                                    strokeWidth: Sizes.size6,
-                                    value: _progressAnimationController.value,
-                                  ),
-                                ),
-                                Container(
-                                  width: Sizes.size72,
-                                  height: Sizes.size72,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.red.shade400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
                     ],
                   ),
       ),
