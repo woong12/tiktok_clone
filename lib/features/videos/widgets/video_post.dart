@@ -340,20 +340,6 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
             ),
           ),
 
-          // Positioned(
-          //   left: 20,
-          //   top: 45,
-          //   child: IconButton(
-          //     icon: FaIcon(
-          //       VideoConfig.of(context).autoMute
-          //           ? FontAwesomeIcons.volumeOff
-          //           : FontAwesomeIcons.volumeHigh,
-          //       color: Colors.white,
-          //     ),
-          //     onPressed: () {},
-          //   ),
-          // ),
-
           // Volume control
 
           Positioned(
@@ -371,12 +357,13 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
               //         color: Colors.white,
               //       ),
               icon: FaIcon(
-                VideoConfig.of(context).autoMute
+                VideoConfigData.of(context).autoMute
                     ? FontAwesomeIcons.volumeXmark
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
               ),
-              onPressed: onVolumnControl,
+              onPressed: VideoConfigData.of(context).toggleMuted,
+              // onPressed: onVolumnControl,
             ),
           ),
 
