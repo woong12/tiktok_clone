@@ -67,6 +67,7 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                   return [
                     SliverAppBar(
                       title: Text(widget.username),
+                      centerTitle: true,
                       actions: [
                         IconButton(
                           onPressed: _onGearPressed,
@@ -74,7 +75,7 @@ class _UserProfileScreenState extends State<UserProfileScreen>
                             FontAwesomeIcons.gear,
                             size: Sizes.size20,
                           ),
-                        )
+                        ),
                       ],
                     ),
                     SliverToBoxAdapter(

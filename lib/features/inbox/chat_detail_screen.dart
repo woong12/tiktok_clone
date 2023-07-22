@@ -197,69 +197,72 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                     ),
                     child: GestureDetector(
                       onTap: () {},
-                      child: Row(
-                        children: [
-                          const ChatImoticons(
-                            icon: FontAwesomeIcons.solidHeart,
-                            color: Colors.red,
-                          ),
-                          Gaps.h5,
-                          ChatImoticons(
-                            icon: FontAwesomeIcons.solidFaceSmileBeam,
-                            color: Colors.yellow.shade700,
-                          ),
-                          Gaps.h5,
-                          ChatImoticons(
-                            icon: FontAwesomeIcons.solidThumbsUp,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          Gaps.h5,
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.size12 + Sizes.size1,
-                              vertical: Sizes.size8,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            const ChatImoticons(
+                              icon: FontAwesomeIcons.solidHeart,
+                              color: Colors.red,
                             ),
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 234, 232, 232),
-                              borderRadius: BorderRadius.circular(
-                                Sizes.size20,
+                            Gaps.h5,
+                            ChatImoticons(
+                              icon: FontAwesomeIcons.solidFaceSmileBeam,
+                              color: Colors.yellow.shade700,
+                            ),
+                            Gaps.h5,
+                            ChatImoticons(
+                              icon: FontAwesomeIcons.solidThumbsUp,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            Gaps.h5,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: Sizes.size12 + Sizes.size1,
+                                vertical: Sizes.size8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 234, 232, 232),
+                                borderRadius: BorderRadius.circular(
+                                  Sizes.size20,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                      left: Sizes.size4,
+                                      right: Sizes.size3,
+                                      top: Sizes.size3,
+                                      bottom: Sizes.size3,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: Sizes.size1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        Sizes.size3,
+                                      ),
+                                    ),
+                                    child: const FaIcon(
+                                      FontAwesomeIcons.play,
+                                      size: Sizes.size7,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Gaps.h8,
+                                  const Text(
+                                    "Share post",
+                                    style: TextStyle(
+                                      fontSize: Sizes.size12,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                    left: Sizes.size4,
-                                    right: Sizes.size3,
-                                    top: Sizes.size3,
-                                    bottom: Sizes.size3,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: Sizes.size1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(
-                                      Sizes.size3,
-                                    ),
-                                  ),
-                                  child: const FaIcon(
-                                    FontAwesomeIcons.play,
-                                    size: Sizes.size7,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                Gaps.h8,
-                                const Text(
-                                  "Share post",
-                                  style: TextStyle(
-                                    fontSize: Sizes.size12,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
