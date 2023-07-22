@@ -7,9 +7,11 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_comments.dart';
-import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+
+import '../../../common/widgets/video_configuration/video_config.dart';
+import '../../../generated/l10n.dart';
 
 class VideoPost extends StatefulWidget {
   final Function onVideoFinished;
@@ -338,22 +340,42 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
             ),
           ),
 
+          // Positioned(
+          //   left: 20,
+          //   top: 45,
+          //   child: IconButton(
+          //     icon: FaIcon(
+          //       VideoConfig.of(context).autoMute
+          //           ? FontAwesomeIcons.volumeOff
+          //           : FontAwesomeIcons.volumeHigh,
+          //       color: Colors.white,
+          //     ),
+          //     onPressed: () {},
+          //   ),
+          // ),
+
           // Volume control
 
           Positioned(
             right: 10,
-            top: 45,
+            top: 50,
             child: IconButton(
               highlightColor: Colors.transparent,
-              icon: volumeHigh
-                  ? const FaIcon(
-                      FontAwesomeIcons.volumeXmark,
-                      color: Colors.white,
-                    )
-                  : const FaIcon(
-                      FontAwesomeIcons.volumeHigh,
-                      color: Colors.white,
-                    ),
+              // icon: volumeHigh
+              //     ? const FaIcon(
+              //         FontAwesomeIcons.volumeXmark,
+              //         color: Colors.white,
+              //       )
+              //     : const FaIcon(
+              //         FontAwesomeIcons.volumeHigh,
+              //         color: Colors.white,
+              //       ),
+              icon: FaIcon(
+                VideoConfig.of(context).autoMute
+                    ? FontAwesomeIcons.volumeXmark
+                    : FontAwesomeIcons.volumeHigh,
+                color: Colors.white,
+              ),
               onPressed: onVolumnControl,
             ),
           ),
