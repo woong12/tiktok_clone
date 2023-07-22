@@ -10,6 +10,9 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/video_preview_screen.dart';
 
 class VideoRecordingScreen extends StatefulWidget {
+  static const String routeName = "postVideo";
+  static const String routeURL = "/upload";
+
   const VideoRecordingScreen({super.key});
 
   @override
@@ -155,7 +158,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
 
   @override
   void dispose() {
-    _buttonAnimationController.dispose();
+    _progressAnimationController.dispose();
     _buttonAnimationController.dispose();
     _cameraController.dispose();
     super.dispose();

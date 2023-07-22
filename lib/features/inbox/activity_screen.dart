@@ -5,6 +5,8 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/utils.dart';
 
 class ActivityScreen extends StatefulWidget {
+  static const String routeName = "activity";
+  static const String routeURL = "/activity";
   const ActivityScreen({super.key});
 
   @override
@@ -84,6 +86,7 @@ class _ActivityScreenState extends State<ActivityScreen>
     final isDark = isDarkMode(context);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         elevation: 0,
         title: GestureDetector(
           onTap: _toggleAnimations,
