@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
-import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/common/widgets/main_navigation/main_navigation_screen.dart';
 import 'package:tiktok_clone/utils.dart';
 import '../../constants/sizes.dart';
 
@@ -95,7 +95,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     child: Image(
                       image: AssetImage("assets/images/tutorial1.png"),
                       width: 300,
-                      height: 450,
+                      height: 400,
                     ),
                   )
                 ],
@@ -125,7 +125,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     child: Image(
                       image: AssetImage("assets/images/tutorial2.png"),
                       width: 300,
-                      height: 430,
+                      height: 380,
                     ),
                   )
                 ],

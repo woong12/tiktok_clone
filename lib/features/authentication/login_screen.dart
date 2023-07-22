@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
               const Opacity(
                 opacity: 0.7,
                 child: Text(
-                  "Manage your account, check notifications, comment on videos, and more.",
+                  "Manage your account, check comment on videos, notifications, and more.",
                   style: TextStyle(
                     fontSize: Sizes.size16,
                   ),
