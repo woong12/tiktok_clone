@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:marquee/marquee.dart';
 import 'package:tiktok_clone/constants/breakpoint.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_button.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
@@ -12,8 +14,9 @@ import 'package:visibility_detector/visibility_detector.dart';
 import '../../../../generated/l10n.dart';
 import '../../../users/user_profile_screen.dart';
 
-class VideoPost extends StatefulWidget {
+class VideoPost extends ConsumerStatefulWidget {
   final Function onVideoFinished;
+
   final int index;
 
   const VideoPost({
@@ -23,10 +26,11 @@ class VideoPost extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<VideoPost> createState() => _VideoPostState();
+  VideoPostState createState() => VideoPostState();
 }
 
-class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
+class VideoPostState extends ConsumerState<VideoPost>
+    with TickerProviderStateMixin {
   late final VideoPlayerController _videoPlayerController;
 
   final Duration _animationDuration = const Duration(milliseconds: 200);
@@ -103,7 +107,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
   }
 
   void _initMuted() {
-    const isMuted = false;
+    final isMuted = ref.read(playbackConfigProvider).muted;
     _setMuted(isMuted);
     setState(() {
       _isMuted = isMuted;
@@ -113,6 +117,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
   void _setMuted(bool isMuted) => isMuted
       ? _videoPlayerController.setVolume(0)
       : _videoPlayerController.setVolume(1);
+
   void _toggleMuted() {
     _setMuted(!_isMuted);
     setState(() {
@@ -125,7 +130,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     if (info.visibleFraction == 1 &&
         !_isPaused &&
         !_videoPlayerController.value.isPlaying) {
-      if (false) {
+      if (ref.read(playbackConfigProvider).autoplay) {
         _videoPlayerController.play();
       }
     }
