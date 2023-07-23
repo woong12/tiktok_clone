@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:marquee/marquee.dart';
-import 'package:provider/provider.dart';
 import 'package:tiktok_clone/constants/breakpoint.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
@@ -10,7 +9,6 @@ import 'package:tiktok_clone/features/videos/views/widgets/video_button.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-import '../../../../common/widgets/video_configuration/video_config.dart';
 import '../../../../generated/l10n.dart';
 import '../../../users/user_profile_screen.dart';
 
@@ -362,8 +360,8 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
             child: IconButton(
               highlightColor: Colors.transparent,
               icon: FaIcon(
-                !context.watch<VideoConfig>().isMuted || !volumeHigh
-                    ? context.watch<VideoConfig>().isMuted
+                !false || !volumeHigh
+                    ? false
                         ? FontAwesomeIcons.volumeXmark
                         : FontAwesomeIcons.volumeHigh
                     : !volumeHigh
@@ -372,7 +370,8 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
                 color: Colors.white,
               ),
               onPressed: () {
-                context.read<VideoConfig>().toggleIsMuted();
+                // context.read<VideoConfig>().toggleIsMuted();
+                () {};
                 onVolumnControl();
               },
             ),

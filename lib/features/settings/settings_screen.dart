@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tiktok_clone/common/widgets/video_configuration/video_config.dart';
 import 'package:tiktok_clone/constants/breakpoint.dart';
+import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 
 import '../../common/widgets/theme_configuration/theme_config.dart';
 
@@ -40,12 +40,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             child: ListView(
               children: [
+                // SwitchListTile.adaptive(
+                //   value: context.watch<VideoConfig>().isMuted,
+                //   onChanged: (value) =>
+                //       context.read<VideoConfig>().toggleIsMuted(),
+                //   title: const Text("Mute Video"),
+                //   subtitle: const Text("Videos will be muted by default."),
+                // ),
                 SwitchListTile.adaptive(
-                  value: context.watch<VideoConfig>().isMuted,
+                  value: context.watch<PlaybackConfigViewModel>().muted,
                   onChanged: (value) =>
-                      context.read<VideoConfig>().toggleIsMuted(),
+                      context.read<PlaybackConfigViewModel>().setMuted(value),
                   title: const Text("Mute Video"),
                   subtitle: const Text("Videos will be muted by default."),
+                ),
+                SwitchListTile.adaptive(
+                  value: context.watch<PlaybackConfigViewModel>().autoplay,
+                  onChanged: (value) => context
+                      .read<PlaybackConfigViewModel>()
+                      .setAutoplay(value),
+                  title: const Text("Autoplay"),
+                  subtitle:
+                      const Text("Videos will start playing automatically."),
                 ),
                 ValueListenableBuilder(
                   valueListenable: useDarkThemeConfig,
