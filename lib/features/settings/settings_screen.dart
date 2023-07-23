@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/breakpoint.dart';
 
+import '../../common/widgets/theme_configuration/theme_config.dart';
 import '../../common/widgets/video_configuration/video_config.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -38,15 +39,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             child: ListView(
               children: [
-                AnimatedBuilder(
-                  animation: videoConfig,
-                  builder: (context, child) => SwitchListTile.adaptive(
-                    value: videoConfig.autoMute,
+                ValueListenableBuilder(
+                  valueListenable: videoConfig,
+                  builder: (context, value, child) => SwitchListTile.adaptive(
+                    value: value,
                     onChanged: (value) {
-                      videoConfig.toggleAutoMute();
+                      videoConfig.value = !videoConfig.value;
                     },
                     title: const Text("Mute Video"),
                     subtitle: const Text("Videos will be muted by default."),
+                  ),
+                ),
+                ValueListenableBuilder(
+                  valueListenable: useDarkThemeConfig,
+                  builder: (context, value, child) => SwitchListTile.adaptive(
+                    value: useDarkThemeConfig.value,
+                    onChanged: (value) =>
+                        useDarkThemeConfig.value = !useDarkThemeConfig.value,
+                    title: const Text('Use dark mode'),
                   ),
                 ),
                 SwitchListTile.adaptive(

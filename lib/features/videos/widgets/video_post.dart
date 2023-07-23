@@ -36,7 +36,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
 
   bool _isPaused = false;
 
-  bool _autoMute = videoConfig.autoMute;
+  bool _autoMute = videoConfig.value;
 
   bool showMore = false;
 
@@ -88,6 +88,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     } else {
       _videoPlayerController.setVolume(0);
     }
+
     setState(() {
       volumeHigh = !volumeHigh;
     });
@@ -105,10 +106,10 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
       value: 1.5,
       duration: _animationDuration,
     );
-
+    _autoMute = videoConfig.value;
     videoConfig.addListener(() {
       setState(() {
-        _autoMute = videoConfig.autoMute;
+        _autoMute = videoConfig.value;
       });
     });
   }
@@ -357,23 +358,20 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
             top: 50,
             child: IconButton(
               highlightColor: Colors.transparent,
-              // icon: volumeHigh
-              //     ? const FaIcon(
-              //         FontAwesomeIcons.volumeXmark,
-              //         color: Colors.white,
-              //       )
-              //     : const FaIcon(
-              //         FontAwesomeIcons.volumeHigh,
-              //         color: Colors.white,
-              //       ),
               icon: FaIcon(
-                _autoMute
-                    ? FontAwesomeIcons.volumeXmark
-                    : FontAwesomeIcons.volumeHigh,
+                _autoMute || volumeHigh // f/f
+                    ? _autoMute // t
+                        ? FontAwesomeIcons.volumeXmark
+                        : FontAwesomeIcons.volumeHigh
+                    : !volumeHigh // t
+                        ? FontAwesomeIcons.volumeHigh
+                        : FontAwesomeIcons.volumeXmark,
                 color: Colors.white,
               ),
-              onPressed: videoConfig.toggleAutoMute,
-              // onPressed: onVolumnControl,
+              onPressed: () {
+                videoConfig.value = !videoConfig.value;
+                onVolumnControl();
+              },
             ),
           ),
 
