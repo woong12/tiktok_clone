@@ -66,7 +66,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   activeColor: Colors.black,
                   value: _notifications,
                   onChanged: _onNotificationsChanged,
-                  title: const Text("Marketing emials"),
+                  title: const Text("Marketing emails"),
                   subtitle: const Text("We won't spam you."),
                 ),
                 ListTile(
@@ -187,6 +187,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const AboutListTile(
                   applicationVersion: "1.0",
                   applicationLegalese: "Don't copy me.",
+                  child: Text("About TikTok Clone"),
                 ),
               ],
             ),
