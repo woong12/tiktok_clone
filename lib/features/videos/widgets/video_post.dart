@@ -13,6 +13,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../common/widgets/video_configuration/video_config.dart';
 import '../../../generated/l10n.dart';
+import '../../users/user_profile_screen.dart';
 
 class VideoPost extends StatefulWidget {
   final Function onVideoFinished;
@@ -161,6 +162,16 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
       builder: (context) => const VideoComments(),
     );
     _onTogglePause();
+  }
+
+  void _goProfile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            const UserProfileScreen(username: "woong", tab: "view"),
+      ),
+    );
   }
 
   @override
@@ -375,45 +386,48 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
             right: 10,
             child: Column(
               children: [
-                Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Positioned(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(
+                GestureDetector(
+                  onTap: _goProfile,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Positioned(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 1.5,
+                            ),
+                          ),
+                          child: const CircleAvatar(
+                            radius: 27,
+                            foregroundImage: NetworkImage(
+                              "https://images.unsplash.com/photo-1683394230814-69e5141bf06a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: -10,
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 25,
+                          height: 25,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          child: const FaIcon(
+                            FontAwesomeIcons.plus,
                             color: Colors.white,
-                            width: 1.5,
-                          ),
-                        ),
-                        child: const CircleAvatar(
-                          radius: 27,
-                          foregroundImage: NetworkImage(
-                            "https://images.unsplash.com/photo-1683394230814-69e5141bf06a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+                            size: Sizes.size16,
                           ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: -10,
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: 25,
-                        height: 25,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        child: const FaIcon(
-                          FontAwesomeIcons.plus,
-                          color: Colors.white,
-                          size: Sizes.size16,
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Gaps.v24,
                 VideoButton(
