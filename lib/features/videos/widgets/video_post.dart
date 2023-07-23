@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:marquee/marquee.dart';
+import 'package:provider/provider.dart';
 import 'package:tiktok_clone/constants/breakpoint.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
@@ -35,8 +36,6 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
   late final AnimationController _animationController;
 
   bool _isPaused = false;
-
-  bool _autoMute = videoConfig.value;
 
   bool showMore = false;
 
@@ -106,12 +105,6 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
       value: 1.5,
       duration: _animationDuration,
     );
-    _autoMute = videoConfig.value;
-    videoConfig.addListener(() {
-      setState(() {
-        _autoMute = videoConfig.value;
-      });
-    });
   }
 
   @override
@@ -359,17 +352,17 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
             child: IconButton(
               highlightColor: Colors.transparent,
               icon: FaIcon(
-                _autoMute || volumeHigh // f/f
-                    ? _autoMute // t
+                !context.watch<VideoConfig>().isMuted || !volumeHigh
+                    ? context.watch<VideoConfig>().isMuted
                         ? FontAwesomeIcons.volumeXmark
                         : FontAwesomeIcons.volumeHigh
-                    : !volumeHigh // t
+                    : !volumeHigh
                         ? FontAwesomeIcons.volumeHigh
                         : FontAwesomeIcons.volumeXmark,
                 color: Colors.white,
               ),
               onPressed: () {
-                videoConfig.value = !videoConfig.value;
+                context.read<VideoConfig>().toggleIsMuted();
                 onVolumnControl();
               },
             ),
