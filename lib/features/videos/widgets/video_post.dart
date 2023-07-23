@@ -36,6 +36,8 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
 
   bool _isPaused = false;
 
+  bool _autoMute = videoConfig.autoMute;
+
   bool showMore = false;
 
   bool volumeHigh = false;
@@ -78,6 +80,8 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     setState(() {});
   }
 
+  // Volumn
+
   void onVolumnControl() {
     if (volumeHigh == true) {
       _videoPlayerController.setVolume(1);
@@ -101,6 +105,12 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
       value: 1.5,
       duration: _animationDuration,
     );
+
+    videoConfig.addListener(() {
+      setState(() {
+        _autoMute = videoConfig.autoMute;
+      });
+    });
   }
 
   @override
@@ -357,12 +367,12 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
               //         color: Colors.white,
               //       ),
               icon: FaIcon(
-                VideoConfigData.of(context).autoMute
+                _autoMute
                     ? FontAwesomeIcons.volumeXmark
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
               ),
-              onPressed: VideoConfigData.of(context).toggleMuted,
+              onPressed: videoConfig.toggleAutoMute,
               // onPressed: onVolumnControl,
             ),
           ),
