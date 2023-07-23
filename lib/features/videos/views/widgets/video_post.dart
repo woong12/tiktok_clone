@@ -41,6 +41,8 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
 
   bool volumeHigh = false;
 
+  bool _isMuted = false;
+
   // Create a controller
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 3),
@@ -78,20 +80,6 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     setState(() {});
   }
 
-  // Volumn
-
-  // void onVolumnControl() {
-  //   if (volumeHigh == true) {
-  //     _videoPlayerController.setVolume(1);
-  //   } else {
-  //     _videoPlayerController.setVolume(0);
-  //   }
-
-  //   setState(() {
-  //     volumeHigh = !volumeHigh;
-  //   });
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -104,10 +92,7 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
       value: 1.5,
       duration: _animationDuration,
     );
-
-    context
-        .read<PlaybackConfigViewModel>()
-        .addListener(_onPlaybackConfigChanged);
+    _initMuted();
   }
 
   @override
@@ -119,15 +104,22 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  void _onPlaybackConfigChanged() {
-    if (!mounted) return;
-    final muted = context.read<PlaybackConfigViewModel>().muted;
+  void _initMuted() {
+    final isMuted = context.read<PlaybackConfigViewModel>().muted;
+    _setMuted(isMuted);
+    setState(() {
+      _isMuted = isMuted;
+    });
+  }
 
-    if (muted) {
-      _videoPlayerController.setVolume(0);
-    } else {
-      _videoPlayerController.setVolume(1);
-    }
+  void _setMuted(bool isMuted) => isMuted
+      ? _videoPlayerController.setVolume(0)
+      : _videoPlayerController.setVolume(1);
+  void _toggleMuted() {
+    _setMuted(!_isMuted);
+    setState(() {
+      _isMuted = !_isMuted;
+    });
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
@@ -379,17 +371,12 @@ class _VideoPostState extends State<VideoPost> with TickerProviderStateMixin {
             child: IconButton(
               highlightColor: Colors.transparent,
               icon: FaIcon(
-                context.watch<PlaybackConfigViewModel>().muted
+                _isMuted
                     ? FontAwesomeIcons.volumeXmark
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
               ),
-              onPressed: () {
-                context
-                    .read<PlaybackConfigViewModel>()
-                    .setMuted(!context.read<PlaybackConfigViewModel>().muted);
-                // onVolumnControl();
-              },
+              onPressed: _toggleMuted,
             ),
           ),
 
