@@ -1,7 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/repos/authenrication_repo.dart';
+import 'package:tiktok_clone/features/onboarding/interests_screen.dart';
+
+import '../../../utils.dart';
 
 class SignupViewModel extends AsyncNotifier<void> {
   late final AuthenticationRepository _authRopo;
@@ -10,7 +15,7 @@ class SignupViewModel extends AsyncNotifier<void> {
     _authRopo = ref.read(authRepo);
   }
 
-  Future<void> signUp() async {
+  Future<void> signUp(BuildContext context) async {
     state = const AsyncValue.loading();
     final form = ref.read(signUpForm);
 
@@ -20,6 +25,11 @@ class SignupViewModel extends AsyncNotifier<void> {
         form["password"],
       ),
     );
+    if (state.hasError) {
+      showFirebaseErrorSnack(context, state.error);
+    } else {
+      context.goNamed(InterestsScreen.routeName);
+    }
   }
 }
 
