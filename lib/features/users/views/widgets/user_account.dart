@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/gaps.dart';
-import '../../../constants/sizes.dart';
+import '../../../../constants/gaps.dart';
+import '../../../../constants/sizes.dart';
 
 class UserAccount extends StatelessWidget {
   final String number;

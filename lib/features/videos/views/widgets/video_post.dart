@@ -12,7 +12,7 @@ import 'package:tiktok_clone/features/videos/views/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import '../../../../generated/l10n.dart';
-import '../../../users/user_profile_screen.dart';
+import '../../../users/views/user_profile_screen.dart';
 
 class VideoPost extends ConsumerStatefulWidget {
   final Function onVideoFinished;
