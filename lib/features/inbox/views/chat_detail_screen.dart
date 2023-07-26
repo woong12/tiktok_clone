@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/inbox/widgets/chat_imoticons.dart';
+import 'package:tiktok_clone/features/inbox/views/widgets/chat_imoticons.dart';
 
-import '../../utils.dart';
+import '../../../utils.dart';
 
 class ChatDetailScreen extends StatefulWidget {
   static const String routeName = "chatDetail";

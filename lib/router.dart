@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/repos/authenrication_repo.dart';
-import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 
 import 'common/widgets/main_navigation/main_navigation_screen.dart';
-import 'features/inbox/activity_screen.dart';
-import 'features/inbox/chat_detail_screen.dart';
-import 'features/inbox/chats_screen.dart';
+import 'features/authentication/views/login_screen.dart';
+import 'features/authentication/views/sign_up_screen.dart';
+import 'features/inbox/views/activity_screen.dart';
+import 'features/inbox/views/chat_detail_screen.dart';
+import 'features/inbox/views/chats_screen.dart';
 import 'features/onboarding/interests_screen.dart';
 import 'features/videos/views/video_recording_screen.dart';
 
