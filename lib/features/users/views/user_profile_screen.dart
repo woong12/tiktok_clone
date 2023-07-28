@@ -6,6 +6,7 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/settings/settings_screen.dart';
 import 'package:tiktok_clone/features/users/view_models/users_view_model.dart';
+import 'package:tiktok_clone/features/users/views/user_profile_edit_screen.dart';
 import 'package:tiktok_clone/features/users/views/widgets/avatar.dart';
 import 'package:tiktok_clone/features/users/views/widgets/persistent_tab_bar.dart';
 import 'package:tiktok_clone/features/users/views/widgets/user_account.dart';
@@ -49,6 +50,14 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
     );
   }
 
+  void _onEditPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const UserProfileEditScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -80,6 +89,13 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                             title: Text(data.name),
                             centerTitle: true,
                             actions: [
+                              IconButton(
+                                onPressed: _onEditPressed,
+                                icon: const FaIcon(
+                                  FontAwesomeIcons.penToSquare,
+                                  size: Sizes.size20,
+                                ),
+                              ),
                               IconButton(
                                 onPressed: _onGearPressed,
                                 icon: const FaIcon(
@@ -241,33 +257,28 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                                         ),
                                       ),
                                       Gaps.v12,
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
                                           horizontal: Sizes.size40,
                                         ),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              "Enjoy the world's famous tourist attractions!",
-                                              textAlign: TextAlign.center,
-                                            ),
-                                            Text("⬇️")
-                                          ],
+                                        child: Text(
+                                          data.bio,
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                       Gaps.v8,
-                                      const Row(
+                                      Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          FaIcon(
+                                          const FaIcon(
                                             FontAwesomeIcons.link,
                                             size: Sizes.size12,
                                           ),
                                           Gaps.h4,
                                           Text(
-                                            "https://unsplash.com/t/travel",
-                                            style: TextStyle(
+                                            data.link,
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize:
                                                   Sizes.size12 + Sizes.size1,
@@ -284,12 +295,10 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                                             CrossAxisAlignment.start,
                                         children: [
                                           Gaps.h52,
-                                          CircleAvatar(
-                                            radius: 50,
-                                            foregroundImage: const NetworkImage(
-                                              "https://images.unsplash.com/photo-1683394230814-69e5141bf06a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
-                                            ),
-                                            child: Text(data.name),
+                                          Avatar(
+                                            uid: data.uid,
+                                            name: data.name,
+                                            hasAvatar: data.hasAvatar,
                                           ),
                                           Gaps.h40,
                                           Column(
@@ -484,27 +493,26 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                                                 ),
                                               ),
                                               Gaps.v12,
-                                              const Column(
+                                              Column(
                                                 children: [
                                                   Text(
-                                                    "Enjoy the world's famous tourist attractions!",
+                                                    data.bio,
                                                     textAlign: TextAlign.center,
                                                   ),
-                                                  Text("⬇️"),
                                                   Gaps.v8,
                                                   Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      FaIcon(
+                                                      const FaIcon(
                                                         FontAwesomeIcons.link,
                                                         size: Sizes.size12,
                                                       ),
                                                       Gaps.h4,
                                                       Text(
-                                                        "https://unsplash.com/t/travel",
-                                                        style: TextStyle(
+                                                        data.link,
+                                                        style: const TextStyle(
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           fontSize:
