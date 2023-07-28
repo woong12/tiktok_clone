@@ -3,16 +3,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tiktok_clone/features/users/view_models/avatar_view_model.dart';
 
 class Avatar extends ConsumerWidget {
   final String name;
+  final bool hasAvatar;
+  final String uid;
 
   const Avatar({
     super.key,
     required this.name,
+    required this.hasAvatar,
+    required this.uid,
   });
 
-  Future<void> _onAvatarTap() async {
+  Future<void> _onAvatarTap(WidgetRef ref) async {
     final xfile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       imageQuality: 40,
@@ -21,20 +26,35 @@ class Avatar extends ConsumerWidget {
     );
     if (xfile != null) {
       final file = File(xfile.path);
+      await ref.read(avatarProvider.notifier).uploadAvatar(file);
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = ref.watch(avatarProvider).isLoading;
     return GestureDetector(
-      onTap: _onAvatarTap,
-      child: CircleAvatar(
-        radius: 47,
-        foregroundImage: const NetworkImage(
-          "https://images.unsplash.com/photo-1683394230814-69e5141bf06a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
-        ),
-        child: Text(name),
-      ),
+      onTap: isLoading ? null : () => _onAvatarTap(ref),
+      child: isLoading
+          ? Container(
+              width: 94,
+              height: 94,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor,
+              ),
+            )
+          : CircleAvatar(
+              radius: 47,
+              foregroundImage: hasAvatar
+                  ? NetworkImage(
+                      "https://firebasestorage.googleapis.com/v0/b/tiktok-woong.appspot.com/o/avatars%2F$uid?alt=media")
+                  : null,
+              child: Text(name),
+            ),
     );
   }
 }
