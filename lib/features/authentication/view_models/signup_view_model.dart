@@ -26,7 +26,7 @@ class SignupViewModel extends AsyncNotifier<void> {
         form["email"],
         form["password"],
       );
-      await users.createAccount(userCredential);
+      await users.createProfile(userCredential);
     });
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);

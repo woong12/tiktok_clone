@@ -4,12 +4,10 @@ import 'package:tiktok_clone/features/users/models/user_profile_model.dart';
 
 class UserRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-  // create profile
-  Future<void> createProfile(UserProfileModel user) async {}
-  // get profile
-  // update avatar
-  // update bio
-  // update link
+
+  Future<void> createProfile(UserProfileModel profile) async {
+    await _db.collection("users").doc(profile.uid).set(profile.toJson());
+  }
 }
 
 final userRepo = Provider(
