@@ -108,7 +108,7 @@ class SettingsScreen extends ConsumerWidget {
                   subtitle: const Text("I need to know!"),
                 ),
                 ListTile(
-                  title: const Text("Log out (iOS)"),
+                  title: const Text("Log out"),
                   textColor: Colors.red,
                   onTap: () {
                     showCupertinoDialog(
@@ -134,7 +134,7 @@ class SettingsScreen extends ConsumerWidget {
                     );
                   },
                 ),
-                ListTile(
+                /* ListTile(
                   title: const Text("Log out (Android)"),
                   textColor: Colors.red,
                   onTap: () {
@@ -181,7 +181,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     );
                   },
-                ),
+                ), */
                 const AboutListTile(
                   applicationVersion: "1.0",
                   applicationLegalese: "Don't copy me.",

@@ -67,9 +67,11 @@ class TikTokApp extends ConsumerWidget {
           Locale("en"),
           Locale("ko"),
         ],
+
         theme: ThemeData(
           useMaterial3: true,
           textTheme: Typography.blackMountainView,
+          // textTheme: const TextTheme(
           brightness: Brightness.light,
           scaffoldBackgroundColor: Colors.white,
           bottomAppBarTheme: BottomAppBarTheme(
@@ -81,6 +83,12 @@ class TikTokApp extends ConsumerWidget {
           ),
           splashColor: Colors.transparent,
           // highlightColor: Colors.transparent,
+          dialogBackgroundColor: Colors.white,
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(Colors.black),
+            ),
+          ),
           appBarTheme: const AppBarTheme(
             foregroundColor: Colors.black,
             backgroundColor: Colors.white,
