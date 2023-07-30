@@ -68,6 +68,8 @@ dependencies:
   firebase_storage: ^11.2.5
   cloud_functions: ^4.3.4
 
+  ffmpeg_kit_flutter: 5.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
