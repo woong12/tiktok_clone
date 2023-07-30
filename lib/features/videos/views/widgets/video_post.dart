@@ -13,9 +13,11 @@ import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import '../../../../generated/l10n.dart';
 import '../../../users/views/user_profile_screen.dart';
+import '../../models/video_model.dart';
 
 class VideoPost extends ConsumerStatefulWidget {
   final Function onVideoFinished;
+  final VideoModel videoData;
 
   final int index;
 
@@ -23,6 +25,7 @@ class VideoPost extends ConsumerStatefulWidget {
     Key? key,
     required this.onVideoFinished,
     required this.index,
+    required this.videoData,
   }) : super(key: key);
 
   @override
@@ -194,8 +197,9 @@ class VideoPostState extends ConsumerState<VideoPost>
           Positioned.fill(
             child: _videoPlayerController.value.isInitialized
                 ? VideoPlayer(_videoPlayerController)
-                : Container(
-                    color: Colors.black,
+                : Image.network(
+                    widget.videoData.thumbnailUrl,
+                    fit: BoxFit.cover,
                   ),
           ),
           Positioned.fill(
@@ -236,9 +240,9 @@ class VideoPostState extends ConsumerState<VideoPost>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Woong",
-                  style: TextStyle(
+                Text(
+                  "@${widget.videoData.creator}",
+                  style: const TextStyle(
                     fontSize: Sizes.size16 + Sizes.size2,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -248,20 +252,13 @@ class VideoPostState extends ConsumerState<VideoPost>
                 Row(
                   children: [
                     Text(
-                      "Flying Over Island",
+                      widget.videoData.description,
                       style: TextStyle(
                         fontSize: Sizes.size16,
                         color: Colors.white.withOpacity(0.9),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Gaps.h5,
-                    const Text(
-                      "☁️",
-                      style: TextStyle(
-                        fontSize: Sizes.size24 + Sizes.size2,
-                      ),
-                    )
                   ],
                 ),
                 Gaps.v1,
@@ -404,11 +401,12 @@ class VideoPostState extends ConsumerState<VideoPost>
                               width: 1.5,
                             ),
                           ),
-                          child: const CircleAvatar(
+                          child: CircleAvatar(
                             radius: 27,
                             foregroundImage: NetworkImage(
-                              "https://images.unsplash.com/photo-1683394230814-69e5141bf06a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+                              "https://firebasestorage.googleapis.com/v0/b/tiktok-woong.appspot.com/o/avatars%2F${widget.videoData.creatorUid}?alt=media",
                             ),
+                            child: Text(widget.videoData.creator),
                           ),
                         ),
                       ),
@@ -435,20 +433,20 @@ class VideoPostState extends ConsumerState<VideoPost>
                 Gaps.v24,
                 VideoButton(
                   icon: FontAwesomeIcons.solidHeart,
-                  text: S.of(context).likeCount(9237583),
+                  text: S.of(context).likeCount(widget.videoData.likes),
                 ),
                 Gaps.v16,
                 GestureDetector(
                   onTap: () => _onCommentsTap(context),
                   child: VideoButton(
                     icon: FontAwesomeIcons.solidCommentDots,
-                    text: S.of(context).commentCount(542315),
+                    text: S.of(context).commentCount(widget.videoData.comments),
                   ),
                 ),
                 Gaps.v16,
                 VideoButton(
                   icon: FontAwesomeIcons.solidBookmark,
-                  text: S.of(context).bookmarkCount(32738),
+                  text: S.of(context).bookmarkCount(widget.videoData.bookmarks),
                 ),
                 Gaps.v16,
                 const VideoButton(
