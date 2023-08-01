@@ -205,7 +205,7 @@ class VideoPostState extends ConsumerState<VideoPost>
       context,
       MaterialPageRoute(
         builder: (context) =>
-            const UserProfileScreen(username: "woong", tab: "view"),
+            UserProfileScreen(username: widget.videoData.creator, tab: "view"),
       ),
     );
   }
