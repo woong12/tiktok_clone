@@ -49,6 +49,10 @@ class VideoPostState extends ConsumerState<VideoPost>
 
   bool _isMuted = false;
 
+  late int _likes = widget.videoData.likes;
+
+  late bool _isLiked = false;
+
   // Create a controller
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 3),
@@ -75,6 +79,14 @@ class VideoPostState extends ConsumerState<VideoPost>
 
   void _onLikeTap() {
     ref.read(videoPostProvider(widget.videoData.id).notifier).likeVideo();
+    if (_isLiked) {
+      _isLiked = false;
+      _likes = _likes++;
+    } else {
+      _isLiked = true;
+      _likes = _likes--;
+    }
+    setState(() {});
   }
 
   void _initVideoPlayer() async {
@@ -90,11 +102,17 @@ class VideoPostState extends ConsumerState<VideoPost>
     setState(() {});
   }
 
+  void _initIsLiked() async {
+    _isLiked = await ref
+        .read(videoPostProvider(widget.videoData.id).notifier)
+        .onTapLikedVedio();
+  }
+
   @override
   void initState() {
     super.initState();
     _initVideoPlayer();
-
+    _initIsLiked();
     _animationController = AnimationController(
       vsync: this,
       lowerBound: 1.0,
@@ -441,6 +459,7 @@ class VideoPostState extends ConsumerState<VideoPost>
                   child: VideoButton(
                     icon: FontAwesomeIcons.solidHeart,
                     text: S.of(context).likeCount(widget.videoData.likes),
+                    isLiked: _isLiked,
                   ),
                 ),
                 Gaps.v16,
@@ -449,17 +468,20 @@ class VideoPostState extends ConsumerState<VideoPost>
                   child: VideoButton(
                     icon: FontAwesomeIcons.solidCommentDots,
                     text: S.of(context).commentCount(widget.videoData.comments),
+                    isLiked: false,
                   ),
                 ),
                 Gaps.v16,
                 VideoButton(
                   icon: FontAwesomeIcons.solidBookmark,
                   text: S.of(context).bookmarkCount(widget.videoData.bookmarks),
+                  isLiked: false,
                 ),
                 Gaps.v16,
                 const VideoButton(
                   icon: FontAwesomeIcons.share,
                   text: "Share",
+                  isLiked: false,
                 ),
                 Gaps.v20,
                 RotationTransition(
