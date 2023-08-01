@@ -35,7 +35,7 @@ class VideosRepository {
   }
 
   Future<void> likeVideo(String videoId, String userId) async {
-    final query = _db.collection("likes").doc("${videoId}000S$userId");
+    final query = _db.collection("likes").doc("${videoId}000$userId");
 
     final like = await query.get();
     if (!like.exists) {
@@ -44,6 +44,8 @@ class VideosRepository {
           "createdAt": DateTime.now().millisecondsSinceEpoch,
         },
       );
+    } else {
+      await query.delete();
     }
   }
 }
