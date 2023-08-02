@@ -230,216 +230,224 @@ class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
             Positioned(
               bottom: 0,
               width: MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: Sizes.size16,
-                      right: Sizes.size16,
-                      top: Sizes.size10,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: Sizes.size16,
+                        right: Sizes.size16,
+                        top: Sizes.size10,
+                      ),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          clipBehavior: Clip.none,
+                          child: Row(
+                            children: [
+                              const ChatImoticons(
+                                icon: FontAwesomeIcons.solidHeart,
+                                color: Colors.red,
+                              ),
+                              Gaps.h5,
+                              ChatImoticons(
+                                icon: FontAwesomeIcons.solidFaceSmileBeam,
+                                color: Colors.yellow.shade700,
+                              ),
+                              Gaps.h5,
+                              ChatImoticons(
+                                icon: FontAwesomeIcons.solidThumbsUp,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              Gaps.h5,
+                              const ChatImoticons(
+                                icon: FontAwesomeIcons.solidThumbsDown,
+                                color: Colors.blue,
+                              ),
+                              Gaps.h5,
+                              const ChatImoticons(
+                                icon: FontAwesomeIcons.solidHandPointer,
+                                color: Colors.black,
+                              ),
+                              Gaps.h5,
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: Sizes.size12 + Sizes.size1,
+                                  vertical: Sizes.size8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color.fromARGB(255, 234, 232, 232),
+                                  borderRadius: BorderRadius.circular(
+                                    Sizes.size20,
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                        left: Sizes.size4,
+                                        right: Sizes.size3,
+                                        top: Sizes.size3,
+                                        bottom: Sizes.size3,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: Sizes.size1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                          Sizes.size3,
+                                        ),
+                                      ),
+                                      child: const FaIcon(
+                                        FontAwesomeIcons.play,
+                                        size: Sizes.size7,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    Gaps.h8,
+                                    const Text(
+                                      "Share post",
+                                      style: TextStyle(
+                                        fontSize: Sizes.size12,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        clipBehavior: Clip.none,
+                    Gaps.v5,
+                    Container(
+                      color:
+                          isDark ? Colors.grey.shade900 : Colors.grey.shade50,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: Sizes.size16,
+                          right: Sizes.size16,
+                          top: Sizes.size10,
+                          bottom: Sizes.size36,
+                        ),
                         child: Row(
                           children: [
-                            const ChatImoticons(
-                              icon: FontAwesomeIcons.solidHeart,
-                              color: Colors.red,
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.07),
+                                      spreadRadius: 20,
+                                      blurRadius: 50,
+                                      offset: const Offset(0, 0),
+                                    ),
+                                  ],
+                                ),
+                                height: Sizes.size44,
+                                child: TextField(
+                                  controller: _editingController,
+                                  onTap: _onStartWriting,
+                                  expands: true,
+                                  minLines: null,
+                                  maxLines: null,
+                                  textInputAction: TextInputAction.newline,
+                                  cursorColor: Theme.of(context).primaryColor,
+                                  decoration: InputDecoration(
+                                    hintText: "Send a message...",
+                                    hintStyle: TextStyle(
+                                      color: isDark
+                                          ? Colors.grey.shade300
+                                          : Colors.grey.shade600,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: Sizes.size16 + Sizes.size1,
+                                    ),
+                                    border: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(
+                                          Sizes.size20,
+                                        ),
+                                        topRight: Radius.circular(
+                                          Sizes.size20,
+                                        ),
+                                        bottomLeft: Radius.circular(
+                                          Sizes.size20,
+                                        ),
+                                        bottomRight: Radius.circular(
+                                          Sizes.size4,
+                                        ),
+                                      ),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    filled: true,
+                                    fillColor: isDark
+                                        ? Colors.grey.shade800
+                                        : Colors.white,
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: Sizes.size12,
+                                    ),
+                                    suffixIcon: Padding(
+                                      padding: const EdgeInsets.only(
+                                        right: Sizes.size12,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          FaIcon(
+                                            FontAwesomeIcons.faceSmile,
+                                            color: isDark
+                                                ? Colors.grey.shade400
+                                                : Colors.grey.shade900,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                            Gaps.h5,
-                            ChatImoticons(
-                              icon: FontAwesomeIcons.solidFaceSmileBeam,
-                              color: Colors.yellow.shade700,
-                            ),
-                            Gaps.h5,
-                            ChatImoticons(
-                              icon: FontAwesomeIcons.solidThumbsUp,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            Gaps.h5,
-                            const ChatImoticons(
-                              icon: FontAwesomeIcons.solidThumbsDown,
-                              color: Colors.blue,
-                            ),
-                            Gaps.h5,
-                            const ChatImoticons(
-                              icon: FontAwesomeIcons.solidHandPointer,
-                              color: Colors.black,
-                            ),
-                            Gaps.h5,
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: Sizes.size12 + Sizes.size1,
-                                vertical: Sizes.size8,
+                            Gaps.h12,
+                            AnimatedContainer(
+                              duration: const Duration(
+                                milliseconds: 500,
+                              ),
+                              curve: Curves.easeInOut,
+                              padding: const EdgeInsets.all(
+                                Sizes.size10,
                               ),
                               decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 234, 232, 232),
                                 borderRadius: BorderRadius.circular(
                                   Sizes.size20,
                                 ),
+                                color: _isWriting
+                                    ? Theme.of(context).primaryColor
+                                    : const Color.fromARGB(208, 215, 215, 215),
                               ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(
-                                      left: Sizes.size4,
-                                      right: Sizes.size3,
-                                      top: Sizes.size3,
-                                      bottom: Sizes.size3,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: Sizes.size1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(
-                                        Sizes.size3,
-                                      ),
-                                    ),
-                                    child: const FaIcon(
-                                      FontAwesomeIcons.play,
-                                      size: Sizes.size7,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  Gaps.h8,
-                                  const Text(
-                                    "Share post",
-                                    style: TextStyle(
-                                      fontSize: Sizes.size12,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
+                              child: GestureDetector(
+                                onTap: isLoading ? null : _onSendPress,
+                                child: FaIcon(
+                                  isLoading
+                                      ? FontAwesomeIcons.hourglass
+                                      : FontAwesomeIcons.solidPaperPlane,
+                                  color: Colors.white,
+                                  size: Sizes.size18,
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                  Gaps.v5,
-                  Container(
-                    color: isDark ? Colors.grey.shade900 : Colors.grey.shade50,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: Sizes.size16,
-                        right: Sizes.size16,
-                        top: Sizes.size10,
-                        bottom: Sizes.size36,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.07),
-                                    spreadRadius: 20,
-                                    blurRadius: 50,
-                                    offset: const Offset(0, 0),
-                                  ),
-                                ],
-                              ),
-                              height: Sizes.size44,
-                              child: TextField(
-                                controller: _editingController,
-                                onTap: _onStartWriting,
-                                expands: true,
-                                minLines: null,
-                                maxLines: null,
-                                textInputAction: TextInputAction.newline,
-                                cursorColor: Theme.of(context).primaryColor,
-                                decoration: InputDecoration(
-                                  hintText: "Send a message...",
-                                  hintStyle: TextStyle(
-                                    color: isDark
-                                        ? Colors.grey.shade300
-                                        : Colors.grey.shade600,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: Sizes.size16 + Sizes.size1,
-                                  ),
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(
-                                        Sizes.size20,
-                                      ),
-                                      topRight: Radius.circular(
-                                        Sizes.size20,
-                                      ),
-                                      bottomLeft: Radius.circular(
-                                        Sizes.size20,
-                                      ),
-                                      bottomRight: Radius.circular(
-                                        Sizes.size4,
-                                      ),
-                                    ),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  filled: true,
-                                  fillColor: isDark
-                                      ? Colors.grey.shade800
-                                      : Colors.white,
-                                  contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: Sizes.size12,
-                                  ),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.only(
-                                      right: Sizes.size12,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        FaIcon(
-                                          FontAwesomeIcons.faceSmile,
-                                          color: isDark
-                                              ? Colors.grey.shade400
-                                              : Colors.grey.shade900,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Gaps.h12,
-                          AnimatedContainer(
-                            duration: const Duration(
-                              milliseconds: 500,
-                            ),
-                            curve: Curves.easeInOut,
-                            padding: const EdgeInsets.all(
-                              Sizes.size10,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                Sizes.size20,
-                              ),
-                              color: _isWriting
-                                  ? Theme.of(context).primaryColor
-                                  : const Color.fromARGB(208, 215, 215, 215),
-                            ),
-                            child: GestureDetector(
-                              onTap: isLoading ? null : _onSendPress,
-                              child: FaIcon(
-                                isLoading
-                                    ? FontAwesomeIcons.hourglass
-                                    : FontAwesomeIcons.solidPaperPlane,
-                                color: Colors.white,
-                                size: Sizes.size18,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )
           ],
