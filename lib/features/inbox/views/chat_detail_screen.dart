@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/repos/authenrication_repo.dart';
 import 'package:tiktok_clone/features/inbox/view_models/messages_view_model.dart';
 import 'package:tiktok_clone/features/inbox/views/widgets/chat_imoticons.dart';
 
@@ -157,275 +158,288 @@ class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
                 ),
               ),
             ),
-            ListView.separated(
-              padding: const EdgeInsets.symmetric(
-                vertical: Sizes.size60,
-                horizontal: Sizes.size14,
-              ),
-              itemBuilder: (context, index) {
-                final isMine = index % 2 == 0;
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment:
-                      isMine ? MainAxisAlignment.end : MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(
-                        Sizes.size14,
-                      ),
-                      decoration: BoxDecoration(
-                        color: isMine
-                            ? Colors.blue
-                            : Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.only(
-                          topLeft: const Radius.circular(
+            ref.watch(chatProvider).when(
+                  data: (data) {
+                    return ListView.separated(
+                      reverse: true,
+                      padding: EdgeInsets.only(
+                        top: Sizes.size60,
+                        bottom: MediaQuery.of(context).padding.bottom +
+                            Sizes.size96 +
                             Sizes.size20,
-                          ),
-                          topRight: const Radius.circular(
-                            Sizes.size20,
-                          ),
-                          bottomLeft: Radius.circular(
-                            isMine ? Sizes.size20 : Sizes.size4,
-                          ),
-                          bottomRight: Radius.circular(
-                            isMine ? Sizes.size4 : Sizes.size20,
-                          ),
-                        ),
+                        left: Sizes.size14,
+                        right: Sizes.size14,
                       ),
-                      child: const Text(
-                        "This is a message",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: Sizes.size16,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-              separatorBuilder: (context, index) => Gaps.v10,
-              itemCount: 8,
-            ),
-            Positioned(
-              bottom: 0,
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: Sizes.size16,
-                        right: Sizes.size16,
-                        top: Sizes.size10,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              const ChatImoticons(
-                                icon: FontAwesomeIcons.solidHeart,
-                                color: Colors.red,
+                      itemBuilder: (context, index) {
+                        final message = data[index];
+                        final isMine =
+                            message.userId == ref.watch(authRepo).user!.uid;
+                        return Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: isMine
+                              ? MainAxisAlignment.end
+                              : MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(
+                                Sizes.size14,
                               ),
-                              Gaps.h5,
-                              ChatImoticons(
-                                icon: FontAwesomeIcons.solidFaceSmileBeam,
-                                color: Colors.yellow.shade700,
-                              ),
-                              Gaps.h5,
-                              ChatImoticons(
-                                icon: FontAwesomeIcons.solidThumbsUp,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              Gaps.h5,
-                              const ChatImoticons(
-                                icon: FontAwesomeIcons.solidThumbsDown,
-                                color: Colors.blue,
-                              ),
-                              Gaps.h5,
-                              const ChatImoticons(
-                                icon: FontAwesomeIcons.solidHandPointer,
-                                color: Colors.black,
-                              ),
-                              Gaps.h5,
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: Sizes.size12 + Sizes.size1,
-                                  vertical: Sizes.size8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 234, 232, 232),
-                                  borderRadius: BorderRadius.circular(
+                              decoration: BoxDecoration(
+                                color: isMine
+                                    ? Colors.blue
+                                    : Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: const Radius.circular(
                                     Sizes.size20,
                                   ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.only(
-                                        left: Sizes.size4,
-                                        right: Sizes.size3,
-                                        top: Sizes.size3,
-                                        bottom: Sizes.size3,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: Sizes.size1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          Sizes.size3,
-                                        ),
-                                      ),
-                                      child: const FaIcon(
-                                        FontAwesomeIcons.play,
-                                        size: Sizes.size7,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    Gaps.h8,
-                                    const Text(
-                                      "Share post",
-                                      style: TextStyle(
-                                        fontSize: Sizes.size12,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
+                                  topRight: const Radius.circular(
+                                    Sizes.size20,
+                                  ),
+                                  bottomLeft: Radius.circular(
+                                    isMine ? Sizes.size20 : Sizes.size4,
+                                  ),
+                                  bottomRight: Radius.circular(
+                                    isMine ? Sizes.size4 : Sizes.size20,
+                                  ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Gaps.v5,
-                    Container(
-                      color:
-                          isDark ? Colors.grey.shade900 : Colors.grey.shade50,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: Sizes.size16,
-                          right: Sizes.size16,
-                          top: Sizes.size10,
-                          bottom: Sizes.size36,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.07),
-                                      spreadRadius: 20,
-                                      blurRadius: 50,
-                                      offset: const Offset(0, 0),
-                                    ),
-                                  ],
-                                ),
-                                height: Sizes.size44,
-                                child: TextField(
-                                  controller: _editingController,
-                                  onTap: _onStartWriting,
-                                  expands: true,
-                                  minLines: null,
-                                  maxLines: null,
-                                  textInputAction: TextInputAction.newline,
-                                  cursorColor: Theme.of(context).primaryColor,
-                                  decoration: InputDecoration(
-                                    hintText: "Send a message...",
-                                    hintStyle: TextStyle(
-                                      color: isDark
-                                          ? Colors.grey.shade300
-                                          : Colors.grey.shade600,
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: Sizes.size16 + Sizes.size1,
-                                    ),
-                                    border: const OutlineInputBorder(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(
-                                          Sizes.size20,
-                                        ),
-                                        topRight: Radius.circular(
-                                          Sizes.size20,
-                                        ),
-                                        bottomLeft: Radius.circular(
-                                          Sizes.size20,
-                                        ),
-                                        bottomRight: Radius.circular(
-                                          Sizes.size4,
-                                        ),
-                                      ),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    filled: true,
-                                    fillColor: isDark
-                                        ? Colors.grey.shade800
-                                        : Colors.white,
-                                    contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: Sizes.size12,
-                                    ),
-                                    suffixIcon: Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: Sizes.size12,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          FaIcon(
-                                            FontAwesomeIcons.faceSmile,
-                                            color: isDark
-                                                ? Colors.grey.shade400
-                                                : Colors.grey.shade900,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                              child: Text(
+                                message.text,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Sizes.size16,
                                 ),
                               ),
                             ),
-                            Gaps.h12,
-                            AnimatedContainer(
-                              duration: const Duration(
-                                milliseconds: 500,
-                              ),
-                              curve: Curves.easeInOut,
-                              padding: const EdgeInsets.all(
-                                Sizes.size10,
+                          ],
+                        );
+                      },
+                      separatorBuilder: (context, index) => Gaps.v10,
+                      itemCount: data.length,
+                    );
+                  },
+                  error: (error, stackTrace) => Center(
+                    child: Text(
+                      error.toString(),
+                    ),
+                  ),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+            Positioned(
+              bottom: 0,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: Sizes.size16,
+                      right: Sizes.size16,
+                      top: Sizes.size10,
+                    ),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        clipBehavior: Clip.none,
+                        child: Row(
+                          children: [
+                            const ChatImoticons(
+                              icon: FontAwesomeIcons.solidHeart,
+                              color: Colors.red,
+                            ),
+                            Gaps.h5,
+                            ChatImoticons(
+                              icon: FontAwesomeIcons.solidFaceSmileBeam,
+                              color: Colors.yellow.shade700,
+                            ),
+                            Gaps.h5,
+                            ChatImoticons(
+                              icon: FontAwesomeIcons.solidThumbsUp,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            Gaps.h5,
+                            const ChatImoticons(
+                              icon: FontAwesomeIcons.solidThumbsDown,
+                              color: Colors.blue,
+                            ),
+                            Gaps.h5,
+                            const ChatImoticons(
+                              icon: FontAwesomeIcons.solidHandPointer,
+                              color: Colors.black,
+                            ),
+                            Gaps.h5,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: Sizes.size12 + Sizes.size1,
+                                vertical: Sizes.size8,
                               ),
                               decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 234, 232, 232),
                                 borderRadius: BorderRadius.circular(
                                   Sizes.size20,
                                 ),
-                                color: _isWriting
-                                    ? Theme.of(context).primaryColor
-                                    : const Color.fromARGB(208, 215, 215, 215),
                               ),
-                              child: GestureDetector(
-                                onTap: isLoading ? null : _onSendPress,
-                                child: FaIcon(
-                                  isLoading
-                                      ? FontAwesomeIcons.hourglass
-                                      : FontAwesomeIcons.solidPaperPlane,
-                                  color: Colors.white,
-                                  size: Sizes.size18,
-                                ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                      left: Sizes.size4,
+                                      right: Sizes.size3,
+                                      top: Sizes.size3,
+                                      bottom: Sizes.size3,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: Sizes.size1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        Sizes.size3,
+                                      ),
+                                    ),
+                                    child: const FaIcon(
+                                      FontAwesomeIcons.play,
+                                      size: Sizes.size7,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Gaps.h8,
+                                  const Text(
+                                    "Share post",
+                                    style: TextStyle(
+                                      fontSize: Sizes.size12,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Gaps.v5,
+                  Container(
+                    color: isDark ? Colors.grey.shade900 : Colors.grey.shade50,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: Sizes.size16,
+                        right: Sizes.size16,
+                        top: Sizes.size10,
+                        bottom: Sizes.size36,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.07),
+                                    spreadRadius: 20,
+                                    blurRadius: 50,
+                                    offset: const Offset(0, 0),
+                                  ),
+                                ],
+                              ),
+                              height: Sizes.size44,
+                              child: TextField(
+                                controller: _editingController,
+                                onTap: _onStartWriting,
+                                expands: true,
+                                minLines: null,
+                                maxLines: null,
+                                textInputAction: TextInputAction.newline,
+                                cursorColor: Theme.of(context).primaryColor,
+                                decoration: InputDecoration(
+                                  hintText: "Send a message...",
+                                  hintStyle: TextStyle(
+                                    color: isDark
+                                        ? Colors.grey.shade300
+                                        : Colors.grey.shade600,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: Sizes.size16 + Sizes.size1,
+                                  ),
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(
+                                        Sizes.size20,
+                                      ),
+                                      topRight: Radius.circular(
+                                        Sizes.size20,
+                                      ),
+                                      bottomLeft: Radius.circular(
+                                        Sizes.size20,
+                                      ),
+                                      bottomRight: Radius.circular(
+                                        Sizes.size4,
+                                      ),
+                                    ),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  filled: true,
+                                  fillColor: isDark
+                                      ? Colors.grey.shade800
+                                      : Colors.white,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: Sizes.size12,
+                                  ),
+                                  suffixIcon: Padding(
+                                    padding: const EdgeInsets.only(
+                                      right: Sizes.size12,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.faceSmile,
+                                          color: isDark
+                                              ? Colors.grey.shade400
+                                              : Colors.grey.shade900,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Gaps.h12,
+                          AnimatedContainer(
+                            duration: const Duration(
+                              milliseconds: 500,
+                            ),
+                            curve: Curves.easeInOut,
+                            padding: const EdgeInsets.all(
+                              Sizes.size10,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                Sizes.size20,
+                              ),
+                              color: _isWriting
+                                  ? Theme.of(context).primaryColor
+                                  : const Color.fromARGB(208, 215, 215, 215),
+                            ),
+                            child: GestureDetector(
+                              onTap: isLoading ? null : _onSendPress,
+                              child: FaIcon(
+                                isLoading
+                                    ? FontAwesomeIcons.hourglass
+                                    : FontAwesomeIcons.solidPaperPlane,
+                                color: Colors.white,
+                                size: Sizes.size18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             )
           ],
