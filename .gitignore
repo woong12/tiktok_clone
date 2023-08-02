@@ -3,13 +3,13 @@
 *.log
 *.pyc
 *.swp
+*.cpp
 .DS_Store
 .atom/
 .buildlog/
 .history
 .svn/
 migrate_working_dir/
-.cpp
 
 
 # IntelliJ related
