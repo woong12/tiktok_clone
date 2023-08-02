@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok_clone/common/widgets/theme_configuration/theme_config.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:tiktok_clone/features/notifications/notifications_provider.dart';
 import 'package:tiktok_clone/features/videos/repos/video_playback_config_repo.dart';
 import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktok_clone/firebase_options.dart';
@@ -49,6 +50,7 @@ class TikTokApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(notificationProvider);
     S.load(const Locale("en"));
     return ValueListenableBuilder(
       valueListenable: useDarkThemeConfig,
