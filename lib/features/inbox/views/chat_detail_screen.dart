@@ -166,7 +166,7 @@ class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
                         top: Sizes.size60,
                         bottom: MediaQuery.of(context).padding.bottom +
                             Sizes.size96 +
-                            Sizes.size20,
+                            Sizes.size52,
                         left: Sizes.size14,
                         right: Sizes.size14,
                       ),
