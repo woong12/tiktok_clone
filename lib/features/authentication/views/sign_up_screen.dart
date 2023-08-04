@@ -88,6 +88,39 @@ class SignUpScreen extends ConsumerWidget {
                         text: "Continue with Github",
                       ),
                     ),
+                    Gaps.v14,
+                    GestureDetector(
+                      onTap: () {},
+                      child: const AuthButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.apple,
+                          color: Colors.black,
+                        ),
+                        text: "Continue with Apple",
+                      ),
+                    ),
+                    Gaps.v14,
+                    GestureDetector(
+                      onTap: () {},
+                      child: const AuthButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.facebook,
+                          color: Colors.blue,
+                        ),
+                        text: "Continue with Facebook",
+                      ),
+                    ),
+                    Gaps.v14,
+                    GestureDetector(
+                      onTap: () {},
+                      child: const AuthButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.google,
+                          color: Colors.black,
+                        ),
+                        text: "Continue with Google",
+                      ),
+                    ),
                   ],
                   if (orientation == Orientation.landscape)
                     Row(
@@ -114,8 +147,59 @@ class SignUpScreen extends ConsumerWidget {
                             ),
                           ),
                         ),
+                        Gaps.v14,
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: const AuthButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.apple,
+                                color: Colors.black,
+                              ),
+                              text: "Continue with Apple",
+                            ),
+                          ),
+                        ),
+                        Gaps.v14,
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: const AuthButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.facebook,
+                                color: Colors.blue,
+                              ),
+                              text: "Continue with Facebook",
+                            ),
+                          ),
+                        ),
+                        Gaps.v14,
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: const AuthButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.google,
+                                color: Colors.black,
+                              ),
+                              text: "Continue with Google",
+                            ),
+                          ),
+                        ),
                       ],
-                    )
+                    ),
+                  const SizedBox(height: 140),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: const Text(
+                      textAlign: TextAlign.center,
+                      maxLines: 3,
+                      "By continuing, you agree to our Terms of Service and acknowledge that you have read our Privacy Policy to learn how we collect, use, and share your data.",
+                      style: TextStyle(
+                        fontSize: Sizes.size12 + Sizes.size1,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
