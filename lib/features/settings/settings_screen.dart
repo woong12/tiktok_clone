@@ -177,6 +177,7 @@ class SettingsScreen extends ConsumerWidget {
                             onPressed: () {
                               ref.read(authRepo).signOut();
                               context.go("/");
+                              Navigator.of(context).pop();
                             },
                             isDestructiveAction: true,
                             child: const Text("Yes"),
