@@ -111,6 +111,16 @@ class _ActivityScreenState extends State<ActivityScreen>
             ],
           ),
         ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(
+              right: 20,
+            ),
+            child: FaIcon(
+              FontAwesomeIcons.paperPlane,
+            ),
+          ),
+        ],
       ),
       body: Stack(
         children: [
