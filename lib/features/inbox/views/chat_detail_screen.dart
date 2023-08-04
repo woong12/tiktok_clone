@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/repos/authenrication_repo.dart';
@@ -26,6 +27,9 @@ class ChatDetailScreen extends ConsumerStatefulWidget {
 
 class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
   final TextEditingController _editingController = TextEditingController();
+  String formattedTime =
+      DateFormat("MMMM d. y. hh:mm a").format(DateTime.now());
+
   bool _isWriting = false;
 
   void _onSendPress() {
@@ -150,7 +154,7 @@ class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
                 top: Sizes.size24,
               ),
               child: Text(
-                "June 16, 2023, 7:22 PM",
+                formattedTime,
                 style: TextStyle(
                   color: Colors.grey.shade500,
                   fontWeight: FontWeight.w300,
