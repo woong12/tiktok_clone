@@ -83,9 +83,9 @@ class _ChatsScreenState extends State<ChatsScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Bob ($index)",
-                        style: const TextStyle(
+                      const Text(
+                        "Bob",
+                        style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: Sizes.size16 + Sizes.size1,
                         ),

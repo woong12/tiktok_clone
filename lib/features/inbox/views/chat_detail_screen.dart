@@ -104,9 +104,9 @@ class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Bob (${widget.chatId})',
-                    style: const TextStyle(
+                  const Text(
+                    'Bob',
+                    style: TextStyle(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
