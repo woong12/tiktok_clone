@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:tiktok_clone/utils.dart';
+
 import '../../../../constants/breakpoint.dart';
+import '../../../../constants/gaps.dart';
 
 class VideoComments extends StatefulWidget {
   const VideoComments({super.key});
@@ -80,109 +81,138 @@ class _VideoCommentsState extends State<VideoComments> {
           onTap: _stopWriting,
           child: Stack(
             children: [
-              Scrollbar(
-                controller: _scrollController,
-                child: ListView.separated(
-                  controller: _scrollController,
-                  separatorBuilder: (context, index) => Gaps.v20,
-                  padding: const EdgeInsets.only(
-                    top: Sizes.size10,
-                    bottom: Sizes.size20 + Sizes.size96,
-                    left: Sizes.size14,
-                    right: Sizes.size14,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Sizes.size18,
+                ),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: Sizes.size44,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(
+                      Sizes.size8,
+                    ),
                   ),
-                  itemCount: 10,
-                  itemBuilder: (context, index) => Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CircleAvatar(
-                        radius: 18,
-                        backgroundColor: isDark ? Colors.grey.shade500 : null,
-                        child: const Text("AA"),
-                      ),
-                      Gaps.h8,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "woong",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: Sizes.size14,
-                                color: Colors.grey.shade600,
-                              ),
-                            ),
-                            Gaps.v5,
-                            const Text(
-                              "That's not it l've seen the same thing but also in a cave",
-                              style: TextStyle(
-                                fontSize: Sizes.size16,
-                              ),
-                            ),
-                            Gaps.v8,
-                            Row(
-                              children: [
-                                Text(
-                                  "1-18",
-                                  style: TextStyle(
-                                    color: Colors.grey.shade700,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: Sizes.size12 + Sizes.size1,
-                                  ),
-                                ),
-                                Gaps.h10,
-                                Text(
-                                  "Reply",
-                                  style: TextStyle(
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: Sizes.size14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Gaps.v10,
-                            const Row(
-                              children: [
-                                Text(
-                                  "View replies (194)",
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: Sizes.size14,
-                                  ),
-                                ),
-                                Gaps.h3,
-                                FaIcon(
-                                  FontAwesomeIcons.chevronDown,
-                                  size: Sizes.size14,
-                                  color: Colors.black45,
-                                ),
-                              ],
-                            ),
-                          ],
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Sizes.size14,
+                  ),
+                  alignment: Alignment.centerLeft,
+                  child: const Text(
+                    "Top Gifts",
+                    style: TextStyle(
+                      fontSize: Sizes.size16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: Sizes.size52),
+                child: Scrollbar(
+                  controller: _scrollController,
+                  child: ListView.separated(
+                    controller: _scrollController,
+                    separatorBuilder: (context, index) => Gaps.v20,
+                    padding: const EdgeInsets.only(
+                      top: Sizes.size10,
+                      bottom: Sizes.size20 + Sizes.size96,
+                      left: Sizes.size14,
+                      right: Sizes.size14,
+                    ),
+                    itemCount: 10,
+                    itemBuilder: (context, index) => Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: 18,
+                          backgroundColor: isDark ? Colors.grey.shade500 : null,
+                          child: const Text("AA"),
                         ),
-                      ),
-                      Gaps.h10,
-                      Column(
-                        children: [
-                          const SizedBox(height: Sizes.size4),
-                          FaIcon(
-                            FontAwesomeIcons.heart,
-                            size: Sizes.size20 + Sizes.size1,
-                            color: Colors.grey.shade600,
+                        Gaps.h8,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "woong",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: Sizes.size14,
+                                  color: Colors.grey.shade600,
+                                ),
+                              ),
+                              Gaps.v5,
+                              const Text(
+                                "That's not it l've seen the same thing but also in a cave",
+                                style: TextStyle(
+                                  fontSize: Sizes.size16,
+                                ),
+                              ),
+                              Gaps.v8,
+                              Row(
+                                children: [
+                                  Text(
+                                    "1-18",
+                                    style: TextStyle(
+                                      color: Colors.grey.shade700,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: Sizes.size12 + Sizes.size1,
+                                    ),
+                                  ),
+                                  Gaps.h10,
+                                  Text(
+                                    "Reply",
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: Sizes.size14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Gaps.v10,
+                              const Row(
+                                children: [
+                                  Text(
+                                    "View replies (194)",
+                                    style: TextStyle(
+                                      color: Colors.black54,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: Sizes.size14,
+                                    ),
+                                  ),
+                                  Gaps.h3,
+                                  FaIcon(
+                                    FontAwesomeIcons.chevronDown,
+                                    size: Sizes.size14,
+                                    color: Colors.black45,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          Gaps.v2,
-                          Text(
-                            "52.2K",
-                            style: TextStyle(
+                        ),
+                        Gaps.h10,
+                        Column(
+                          children: [
+                            const SizedBox(height: Sizes.size4),
+                            FaIcon(
+                              FontAwesomeIcons.heart,
+                              size: Sizes.size20 + Sizes.size1,
                               color: Colors.grey.shade600,
                             ),
-                          )
-                        ],
-                      )
-                    ],
+                            Gaps.v2,
+                            Text(
+                              "52.2K",
+                              style: TextStyle(
+                                color: Colors.grey.shade600,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
