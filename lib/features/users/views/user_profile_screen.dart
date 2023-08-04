@@ -12,7 +12,6 @@ import 'package:tiktok_clone/features/users/views/widgets/contact_btn.dart';
 import 'package:tiktok_clone/features/users/views/widgets/my_videos.dart';
 import 'package:tiktok_clone/features/users/views/widgets/persistent_tab_bar.dart';
 import 'package:tiktok_clone/features/users/views/widgets/user_account.dart';
-import 'package:tiktok_clone/utils.dart';
 
 class UserProfileScreen extends ConsumerStatefulWidget {
   final String username;
@@ -63,7 +62,6 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final isDark = isDarkMode(context);
 
     return ref.watch(usersProvider).when(
           error: (error, stackTrace) => Center(
