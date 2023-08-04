@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -50,17 +49,16 @@ class SettingsScreen extends ConsumerWidget {
                     value: useDarkThemeConfig.value,
                     onChanged: (value) =>
                         useDarkThemeConfig.value = !useDarkThemeConfig.value,
-                    title: const Text('Use dark mode'),
+                    title: const Text('Dark mode'),
                   ),
                 ),
-                SwitchListTile.adaptive(
+                /* SwitchListTile.adaptive(
                   value: false,
                   onChanged: (value) {},
                   title: const Text("Enable notifications"),
                   subtitle: const Text("They will be cute."),
                 ),
-                CheckboxListTile(
-                  activeColor: Colors.black,
+                SwitchListTile.adaptive(
                   value: false,
                   onChanged: (value) {},
                   title: const Text("Marketing emails"),
@@ -107,34 +105,8 @@ class SettingsScreen extends ConsumerWidget {
                   title: const Text("What is your birthday?"),
                   subtitle: const Text("I need to know!"),
                 ),
+
                 ListTile(
-                  title: const Text("Log out"),
-                  textColor: Colors.red,
-                  onTap: () {
-                    showCupertinoDialog(
-                      context: context,
-                      builder: (context) => CupertinoAlertDialog(
-                        title: const Text("Are you sure?"),
-                        content: const Text("Good Bye"),
-                        actions: [
-                          CupertinoDialogAction(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: const Text("No"),
-                          ),
-                          CupertinoDialogAction(
-                            onPressed: () {
-                              ref.read(authRepo).signOut();
-                              context.go("/");
-                            },
-                            isDestructiveAction: true,
-                            child: const Text("Yes"),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                /* ListTile(
                   title: const Text("Log out (Android)"),
                   textColor: Colors.red,
                   onTap: () {
@@ -185,7 +157,34 @@ class SettingsScreen extends ConsumerWidget {
                 const AboutListTile(
                   applicationVersion: "1.0",
                   applicationLegalese: "Don't copy me.",
-                  child: Text("About TikTok Clone"),
+                  child: Text("About TikTok"),
+                ),
+                ListTile(
+                  title: const Text("Log out"),
+                  textColor: Colors.red,
+                  onTap: () {
+                    showCupertinoDialog(
+                      context: context,
+                      builder: (context) => CupertinoAlertDialog(
+                        title: const Text("Are you sure?"),
+                        content: const Text("Good Bye"),
+                        actions: [
+                          CupertinoDialogAction(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text("No"),
+                          ),
+                          CupertinoDialogAction(
+                            onPressed: () {
+                              ref.read(authRepo).signOut();
+                              context.go("/");
+                            },
+                            isDestructiveAction: true,
+                            child: const Text("Yes"),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
