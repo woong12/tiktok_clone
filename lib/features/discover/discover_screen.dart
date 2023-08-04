@@ -200,7 +200,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 Gaps.h3,
                                 const Expanded(
                                   child: Text(
-                                    "Woong_woong0000",
+                                    "Woong_xxxxxx0000",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: Sizes.size12 + Sizes.size1,
