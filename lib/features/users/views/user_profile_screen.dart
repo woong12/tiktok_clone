@@ -8,6 +8,8 @@ import 'package:tiktok_clone/features/settings/settings_screen.dart';
 import 'package:tiktok_clone/features/users/view_models/users_view_model.dart';
 import 'package:tiktok_clone/features/users/views/user_profile_edit_screen.dart';
 import 'package:tiktok_clone/features/users/views/widgets/avatar.dart';
+import 'package:tiktok_clone/features/users/views/widgets/contact_btn.dart';
+import 'package:tiktok_clone/features/users/views/widgets/my_videos.dart';
 import 'package:tiktok_clone/features/users/views/widgets/persistent_tab_bar.dart';
 import 'package:tiktok_clone/features/users/views/widgets/user_account.dart';
 import 'package:tiktok_clone/utils.dart';
@@ -206,51 +208,22 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                                                 ),
                                               ),
                                               Gaps.h4,
-                                              Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: Sizes.size12,
-                                                  vertical: Sizes.size12 +
-                                                      Sizes.size1,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                    Sizes.size10,
-                                                  ),
-                                                  color: isDark
-                                                      ? Colors.grey.shade800
-                                                      : const Color.fromARGB(
-                                                          255, 236, 236, 243),
-                                                ),
-                                                child: const FaIcon(
-                                                  FontAwesomeIcons.youtube,
-                                                  size: Sizes.size20 +
-                                                      Sizes.size2,
-                                                ),
+                                              const ContactBtn(
+                                                icon: FontAwesomeIcons.youtube,
+                                                size:
+                                                    Sizes.size20 + Sizes.size2,
+                                                paddingh: Sizes.size12,
+                                                paddingv:
+                                                    Sizes.size12 + Sizes.size1,
                                               ),
                                               Gaps.h4,
-                                              Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: Sizes.size18,
-                                                  vertical: Sizes.size14 +
-                                                      Sizes.size1,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                    Sizes.size10,
-                                                  ),
-                                                  color: isDark
-                                                      ? Colors.grey.shade800
-                                                      : const Color.fromARGB(
-                                                          255, 236, 236, 243),
-                                                ),
-                                                child: const FaIcon(
-                                                  FontAwesomeIcons.caretDown,
-                                                  size: Sizes.size18,
-                                                ),
+                                              const ContactBtn(
+                                                icon:
+                                                    FontAwesomeIcons.caretDown,
+                                                size: Sizes.size18,
+                                                paddingh: Sizes.size18,
+                                                paddingv:
+                                                    Sizes.size14 + Sizes.size1,
                                               ),
                                             ],
                                           ),
@@ -420,73 +393,23 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                                                         ),
                                                       ),
                                                       Gaps.h4,
-                                                      Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .symmetric(
-                                                          horizontal:
-                                                              Sizes.size12,
-                                                          vertical:
-                                                              Sizes.size12 +
-                                                                  Sizes.size1,
-                                                        ),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            Sizes.size10,
-                                                          ),
-                                                          color: isDark
-                                                              ? Colors
-                                                                  .grey.shade800
-                                                              : const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  236,
-                                                                  236,
-                                                                  243),
-                                                        ),
-                                                        child: const FaIcon(
-                                                          FontAwesomeIcons
-                                                              .youtube,
-                                                          size: Sizes.size20 +
-                                                              Sizes.size2,
-                                                        ),
+                                                      const ContactBtn(
+                                                        icon: FontAwesomeIcons
+                                                            .youtube,
+                                                        size: Sizes.size20 +
+                                                            Sizes.size2,
+                                                        paddingh: Sizes.size12,
+                                                        paddingv: Sizes.size12 +
+                                                            Sizes.size1,
                                                       ),
                                                       Gaps.h4,
-                                                      Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .symmetric(
-                                                          horizontal:
-                                                              Sizes.size18,
-                                                          vertical:
-                                                              Sizes.size14 +
-                                                                  Sizes.size1,
-                                                        ),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                            Sizes.size10,
-                                                          ),
-                                                          color: isDark
-                                                              ? Colors
-                                                                  .grey.shade800
-                                                              : const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  236,
-                                                                  236,
-                                                                  243),
-                                                        ),
-                                                        child: const FaIcon(
-                                                          FontAwesomeIcons
-                                                              .caretDown,
-                                                          size: Sizes.size18,
-                                                        ),
+                                                      const ContactBtn(
+                                                        icon: FontAwesomeIcons
+                                                            .caretDown,
+                                                        size: Sizes.size18,
+                                                        paddingh: Sizes.size18,
+                                                        paddingv: Sizes.size14 +
+                                                            Sizes.size1,
                                                       ),
                                                     ],
                                                   ),
@@ -538,98 +461,15 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen>
                           ),
                         ];
                       },
-                      body: TabBarView(
+                      body: const TabBarView(
                         children: [
-                          GridView.builder(
-                            // physics: const NeverScrollableScrollPhysics(),
-                            keyboardDismissBehavior:
-                                ScrollViewKeyboardDismissBehavior.onDrag,
-                            padding: EdgeInsets.zero,
-                            itemCount: 20,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: width > Breakpoints.md ? 5 : 3,
-                              crossAxisSpacing: Sizes.size2,
-                              mainAxisSpacing: Sizes.size2,
-                              childAspectRatio: 9 / 12.5,
-                            ),
-                            itemBuilder: (context, index) => Column(
-                              children: [
-                                AspectRatio(
-                                  aspectRatio: 9 / 12.5,
-                                  child: Stack(
-                                    children: [
-                                      FadeInImage.assetNetwork(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        fit: BoxFit.cover,
-                                        placeholder:
-                                            "assets/images/placeholder.jpg",
-                                        image:
-                                            "https://images.unsplash.com/photo-1683229903327-d3ffbe2f0da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
-                                      ),
-                                      index == 0
-                                          ? Positioned(
-                                              top: Sizes.size4,
-                                              left: Sizes.size4,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: Sizes.size4,
-                                                  vertical: Sizes.size3,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                    Radius.circular(
-                                                        Sizes.size3),
-                                                  ),
-                                                ),
-                                                child: const Text(
-                                                  "Pinned",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: Sizes.size12,
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          : Container(),
-                                      const Positioned(
-                                        bottom: 5,
-                                        left: 8,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.play,
-                                              color: Colors.white,
-                                              size: Sizes.size14 + Sizes.size1,
-                                            ),
-                                            Gaps.h8,
-                                            Text(
-                                              "4.1M",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: Sizes.size12,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                          MyVideos(
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1683229903327-d3ffbe2f0da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
                           ),
-                          const Center(
-                            child: Text("Page two"),
+                          MyVideos(
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1576542260349-626bf55262a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
                           ),
                         ],
                       ),
