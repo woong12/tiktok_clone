@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tiktok_clone/common/widgets/theme_configuration/theme_config.dart';
+import 'package:tiktok_clone/common/widgets/main_navigation/theme_configuration/theme_config.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tiktok_clone/features/videos/repos/video_playback_config_repo.dart';
